@@ -14,7 +14,7 @@ namespace HermanTheBroker_API.Models
 		public int Id { get; set; }
         public string Name { get; set; }
 		public string PhoneNumber { get; set; }
-		public virtual List<Residence> Residence { get; set; }
+		public virtual List<Residence> Residences { get; set; }
 
 	}
 }
