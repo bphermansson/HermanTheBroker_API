@@ -6,15 +6,14 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HermanTheBroker_API.Models
+namespace HermanTheBrokerAPI.Models
 {
 	public class Broker
 	{
 		[Key]
-		public int Id { get; set; }
+		public int BrokerId { get; set; }
         public string Name { get; set; }
-		public string PhoneNumber { get; set; }
-		public virtual List<Residence> Residences { get; set; }
-
+		public long PhoneNumber { get; set; }
+		public virtual ICollection<House> House { get; set; }
 	}
 }
