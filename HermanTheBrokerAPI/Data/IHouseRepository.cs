@@ -9,7 +9,8 @@ namespace HermanTheBrokerAPI.Data
 {
     public interface IHouseRepository
     {
-        //House GetAll;
+        IEnumerable<House> Search(string? searchword);
         IEnumerable<House> GetAll();
+        IEnumerable<House> GetById(int id);
     }
 }
