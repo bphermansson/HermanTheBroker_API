@@ -2,10 +2,15 @@ using FribergsCarRentals.DataAccess.Data;
 using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ResidencesContext>();
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
@@ -18,19 +23,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.MapIdentityApi<IdentityUser>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseAuthorization();
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.MapSwagger().RequireAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/secret", (ClaimsPrincipal user) => $"Hello {user.Identity?.Name}. My secret")
+    .RequireAuthorization();
 
 app.Run();
 
