@@ -1,4 +1,3 @@
-using FribergsCarRentals.DataAccess.Data;
 using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("HermanTheBrokerAPIContextConnection") ?? throw new InvalidOperationException("Connection string 'HermanTheBrokerAPIContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddAuthorization();
@@ -15,7 +15,9 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ResidencesContext>(options => options.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
-//builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
+
+//builder.Services.AddDefaultIdentity<HermanTheBrokerAPIUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<HermanTheBrokerAPIContext>();
+builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
 builder.Services.AddTransient<IHouseRepository, HouseRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

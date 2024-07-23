@@ -1,10 +1,13 @@
 ﻿using HermanTheBrokerAPI.Data;
 
-namespace FribergsCarRentals.DataAccess.Data
+namespace HermanTheBrokerAPI.Data
 {
-    public class CarsRepository : IBrokerRepository
+    public class BrokerRepository : IBrokerRepository
     {
         private ResidencesContext context;
-        
+        public BrokerRepository(ResidencesContext context)
+        {
+            this.context = context;
+        }
     }
 }
