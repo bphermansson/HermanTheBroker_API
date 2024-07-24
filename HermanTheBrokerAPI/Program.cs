@@ -26,7 +26,6 @@ builder.Services.AddTransient<IHouseRepository, HouseRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
-//builder.Services.AddDefaultIdentity<IdentityUser>();
 
 var app = builder.Build();
 
