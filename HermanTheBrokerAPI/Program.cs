@@ -1,9 +1,9 @@
-using FribergsCarRentals.DataAccess.Data;
 using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using HermanTheBrokerAPI.Areas.Identity.Data;
+using IdentityTest;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IHouseRepository, HouseRepository>();
+builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

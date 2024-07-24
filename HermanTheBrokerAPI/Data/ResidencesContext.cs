@@ -1,4 +1,5 @@
 ﻿using HermanTheBrokerAPI.Models;
+using IdentityTest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ namespace HermanTheBrokerAPI.Data
 
         public DbSet<Broker> Broker { get; set; }
         public DbSet<House> House { get; set; }
+        public DbSet<AspNetUsers> AspNetUsers { get; set; }
+
         //private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HermanTheBroker_API;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

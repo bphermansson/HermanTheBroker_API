@@ -1,6 +1,11 @@
-﻿namespace IdentityTest
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace IdentityTest
 {
-    public class AspNetUsers
+    [NotMapped]
+
+    public class AspNetUsers: IdentityUser
     {
     }
 }
