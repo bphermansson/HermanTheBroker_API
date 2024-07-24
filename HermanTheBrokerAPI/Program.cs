@@ -2,20 +2,31 @@ using FribergsCarRentals.DataAccess.Data;
 using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using HermanTheBrokerAPI.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//var connectionString = builder.Configuration.GetConnectionString("HermanTheBrokerAPIContextConnection") ?? throw new InvalidOperationException("Connection string 'HermanTheBrokerAPIContextConnection' not found.");
+builder.Services.AddDbContext<ResidencesContext>(options => options.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ResidencesContext>();
+
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ResidencesContext>();
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ResidencesContext>(options => options.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
-//builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
+
 builder.Services.AddTransient<IHouseRepository, HouseRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthorization();
+//builder.Services.AddDefaultIdentity<IdentityUser>();
 
 var app = builder.Build();
 
@@ -27,6 +38,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapIdentityApi<IdentityUser>();
 
 app.UseAuthorization();
 

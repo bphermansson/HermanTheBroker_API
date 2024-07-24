@@ -1,15 +1,12 @@
 ﻿using HermanTheBrokerAPI.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace HermanTheBrokerAPI.Data
 {
-    public class ResidencesContext : DbContext
+    public class ResidencesContext : IdentityDbContext<IdentityUser>
     {
         public ResidencesContext() { }
 
@@ -27,14 +24,16 @@ namespace HermanTheBrokerAPI.Data
         //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Broker>().HasData(
-                new Broker
-                {
-                    BrokerId = 1,
-                    Name = "Patrik",
-                    PhoneNumber = 0708682666,
-                }
-            );
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<Broker>().HasData(
+            //    new Broker
+            //    {
+            //        BrokerId = 1,
+            //        Name = "Patrik",
+            //        PhoneNumber = 0708682666,
+            //    }
+            //);
             modelBuilder.Entity<House>().HasData(
                 new House
                 {
@@ -55,22 +54,22 @@ namespace HermanTheBrokerAPI.Data
             );
 
 
-            modelBuilder.Entity<Broker>().HasData(
-                new Broker
-                {
-                    BrokerId = 2,
-                    Name = "Marcus",
-                    PhoneNumber = 07012345678,
-                }
-            );
-            modelBuilder.Entity<Broker>().HasData(
-                new Broker
-                {
-                    BrokerId = 3,
-                    Name = "Bo",
-                    PhoneNumber = 0708666705,
-                }
-            );
+            //modelBuilder.Entity<Broker>().HasData(
+            //    new Broker
+            //    {
+            //        BrokerId = 2,
+            //        Name = "Marcus",
+            //        PhoneNumber = 07012345678,
+            //    }
+            //);
+            //modelBuilder.Entity<Broker>().HasData(
+            //    new Broker
+            //    {
+            //        BrokerId = 3,
+            //        Name = "Bo",
+            //        PhoneNumber = 0708666705,
+            //    }
+            //);
 
             modelBuilder.Entity<House>().HasData(
                 new House

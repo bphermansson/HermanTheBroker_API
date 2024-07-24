@@ -29,9 +29,15 @@ namespace HermanTheBrokerAPI.Data
         }
         public IEnumerable<House> GetById(int id)
         {
-            var house = context.House
-                .Where(s => s.HouseId.Equals(id));
-            return house;
+            //var house = context.House
+            //    .Where(s => s.HouseId.Equals(id));
+            //return house;
+            //House house = context.House
+            //    .Where(s => s.HouseId.Equals(id));
+            var house = context.House.First(i => i.HouseId == id);
+            List<House> result = new List<House>();
+            result.Add(house);
+            return result;
         }
 
     }
