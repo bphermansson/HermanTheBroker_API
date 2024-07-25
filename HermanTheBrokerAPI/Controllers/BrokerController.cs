@@ -26,7 +26,7 @@ namespace HermanTheBrokerAPI.Controllers
         //}
 
         //BrokerDetails
-        // GET: /api/Visitor/{brokerid}
+        // GET: /api/Broker/{brokerid}
         [HttpGet("{brokerid}")]
         public IEnumerable<string> Get(int brokerid)
         {

@@ -7,6 +7,13 @@ using IdentityTest;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+
+
 // Add services to the container.
 //var connectionString = builder.Configuration.GetConnectionString("HermanTheBrokerAPIContextConnection") ?? throw new InvalidOperationException("Connection string 'HermanTheBrokerAPIContextConnection' not found.");
 builder.Services.AddDbContext<ResidencesContext>(options => options.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
