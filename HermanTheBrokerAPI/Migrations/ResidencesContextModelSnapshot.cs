@@ -42,6 +42,45 @@ namespace HermanTheBrokerAPI.Migrations
                     b.ToTable("Broker");
                 });
 
+            modelBuilder.Entity("HermanTheBrokerAPI.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "Bostadsrättslägenhet"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "Bostadsrättsradhus"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Villa"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Name = "Fritidshus"
+                        });
+                });
+
             modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
                 {
                     b.Property<int>("HouseId")
@@ -57,6 +96,9 @@ namespace HermanTheBrokerAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("BuildYear")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -85,6 +127,7 @@ namespace HermanTheBrokerAPI.Migrations
                             HouseId = 1,
                             Area = 200,
                             BuildYear = 1984,
+                            CategoryId = 2,
                             City = "Vänersborg",
                             NoOfFloors = 2,
                             NoOfRooms = 7,
@@ -95,6 +138,7 @@ namespace HermanTheBrokerAPI.Migrations
                             HouseId = 2,
                             Area = 123,
                             BuildYear = 1999,
+                            CategoryId = 1,
                             City = "Trollhättan",
                             NoOfFloors = 1,
                             NoOfRooms = 4,
@@ -105,6 +149,7 @@ namespace HermanTheBrokerAPI.Migrations
                             HouseId = 3,
                             Area = 80,
                             BuildYear = 1909,
+                            CategoryId = 4,
                             City = "Uddevalla",
                             NoOfFloors = 1,
                             NoOfRooms = 2,
@@ -115,6 +160,7 @@ namespace HermanTheBrokerAPI.Migrations
                             HouseId = 4,
                             Area = 275,
                             BuildYear = 2011,
+                            CategoryId = 3,
                             City = "Grästorp",
                             NoOfFloors = 3,
                             NoOfRooms = 8,

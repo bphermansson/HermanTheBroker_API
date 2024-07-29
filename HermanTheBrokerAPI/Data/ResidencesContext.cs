@@ -37,6 +37,39 @@ namespace HermanTheBrokerAPI.Data
             //        PhoneNumber = 0708682666,
             //    }
             //);
+
+
+            // ******** Categories *********
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 1,
+                    Name = "Bostadsrättslägenhet",
+                }
+            );
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 2,
+                    Name = "Bostadsrättsradhus",
+                }
+            );
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 3,
+                    Name = "Villa",
+                }
+            );
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 4,
+                    Name = "Fritidshus",
+                }
+            );
+
             modelBuilder.Entity<House>().HasData(
                 new House
                 {
@@ -47,6 +80,7 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 1984,
                     NoOfFloors = 2,
                     NoOfRooms = 7,
+                    CategoryId = 2
                     //Broker = new Broker
                     //{
                     //    BrokerId = 1,
@@ -74,6 +108,9 @@ namespace HermanTheBrokerAPI.Data
             //    }
             //);
 
+
+            // ******** Houses *********
+
             modelBuilder.Entity<House>().HasData(
                 new House
                 {
@@ -84,7 +121,8 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 1999,
                     NoOfFloors = 1,
                     NoOfRooms = 4,
-//                    Broker = new Broker { BrokerId = 2 }
+                    CategoryId = 1
+                    //                    Broker = new Broker { BrokerId = 2 }
                 }
             );
             modelBuilder.Entity<House>().HasData(
@@ -97,7 +135,8 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 1909,
                     NoOfFloors = 1,
                     NoOfRooms = 2,
-//                    Broker = new Broker { BrokerId = 1 }
+                    CategoryId = 4
+                    //                    Broker = new Broker { BrokerId = 1 }
                 }
             );
             modelBuilder.Entity<House>().HasData(
@@ -110,7 +149,8 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 2011,
                     NoOfFloors = 3,
                     NoOfRooms = 8,
-//                    Broker = new Broker { BrokerId = 3 }
+                    CategoryId = 3
+                    //                    Broker = new Broker { BrokerId = 3 }
                 }
             );
 
