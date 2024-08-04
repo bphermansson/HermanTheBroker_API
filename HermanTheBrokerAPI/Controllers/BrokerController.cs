@@ -14,7 +14,7 @@ namespace HermanTheBrokerAPI.Controllers
     [ApiController]
     public class BrokerController : ControllerBase
     {
-        private readonly ResidencesContext _context;
+        private readonly ApplicationDbContext _context;
         private IBrokerRepository brokerRepository;
         public BrokerController(IBrokerRepository brokerRepository)
         {

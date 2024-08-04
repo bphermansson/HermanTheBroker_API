@@ -56,27 +56,14 @@ namespace HermanTheBrokerAPI.Migrations
                 name: "Broker",
                 columns: table => new
                 {
-                    BrokerId = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Broker", x => x.BrokerId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Category",
-                columns: table => new
-                {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                    table.PrimaryKey("PK_Broker", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,8 +184,8 @@ namespace HermanTheBrokerAPI.Migrations
                     BuildYear = table.Column<int>(type: "int", nullable: false),
                     NoOfFloors = table.Column<int>(type: "int", nullable: false),
                     NoOfRooms = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    BrokerId = table.Column<int>(type: "int", nullable: true)
+                    Category = table.Column<int>(type: "int", nullable: true),
+                    BrokerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -207,29 +194,30 @@ namespace HermanTheBrokerAPI.Migrations
                         name: "FK_House_Broker_BrokerId",
                         column: x => x.BrokerId,
                         principalTable: "Broker",
-                        principalColumn: "BrokerId");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "CategoryId", "Name" },
+                table: "Broker",
+                columns: new[] { "ID", "Name", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, "Bostadsrättslägenhet" },
-                    { 2, "Bostadsrättsradhus" },
-                    { 3, "Villa" },
-                    { 4, "Fritidshus" }
+                    { -1, "Jeff", 456L },
+                    { -2, "Kerry", 0L },
+                    { -3, "Tom", 0L },
+                    { -4, "Dave", 0L }
                 });
 
             migrationBuilder.InsertData(
                 table: "House",
-                columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "CategoryId", "City", "NoOfFloors", "NoOfRooms", "Street" },
+                columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "NoOfFloors", "NoOfRooms", "Street" },
                 values: new object[,]
                 {
-                    { 1, 200, null, 1984, 2, "Vänersborg", 2, 7, "Storgatan" },
-                    { 2, 123, null, 1999, 1, "Trollhättan", 1, 4, "Drottninggatan" },
-                    { 3, 80, null, 1909, 4, "Uddevalla", 1, 2, "Kungsgatan" },
-                    { 4, 275, null, 2011, 3, "Grästorp", 3, 8, "Odinsgatan" }
+                    { 1, 200, -1, 1984, 2, "Vänersborg", 2, 7, "Storgatan" },
+                    { 2, 123, -1, 1999, 2, "Trollhättan", 1, 4, "Drottninggatan" },
+                    { 3, 80, -1, 1909, 2, "Uddevalla", 1, 2, "Kungsgatan" },
+                    { 4, 275, -1, 2011, 2, "Grästorp", 3, 8, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -294,9 +282,6 @@ namespace HermanTheBrokerAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "House");

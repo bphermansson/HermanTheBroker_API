@@ -1,19 +1,24 @@
 ﻿using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
+using Microsoft.Build.Logging;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace HermanTheBrokerAPI.Data
 {
     public class HouseRepository : IHouseRepository
     {
-        private ResidencesContext context;
-        public HouseRepository(ResidencesContext context)
+        private ApplicationDbContext context;
+        public HouseRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
         public IEnumerable<House> GetAll()
         {
-            return context.House.ToList();
+            var houses = context.House
+            //.Include(house => house.BrokerId)
+            .ToList();
+            return houses;
         }
         public IEnumerable<House> Search(string? searchword)
         {

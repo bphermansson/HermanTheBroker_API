@@ -9,8 +9,8 @@ namespace HermanTheBrokerAPI.Data
 {
     public class BrokerRepository : IBrokerRepository
     {
-        private ResidencesContext context;
-        public BrokerRepository(ResidencesContext context)
+        private ApplicationDbContext context;
+        public BrokerRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -22,15 +22,15 @@ namespace HermanTheBrokerAPI.Data
         }
         public IEnumerable<IdentityUser> GetById(string id)
         {
+            // var firstStudentAgain = db.Student
+            // .Include(s => s.Grade)
+            // .OrderBy(b => b.Id)
+            // .First();
+            // Console.WriteLine("Student 1:" + firstStudentAgain.Name);
+
             var broker = context.Users.First(i => i.Id == id);
             IEnumerable<IdentityUser> result = new List<IdentityUser>();
             return result;
         }
-        public bool Login()
-        {
-            return false;
-        }
-        //  "email": "oatrik@paheco.nu",
-        // "password": "String1234<"
     }
 }

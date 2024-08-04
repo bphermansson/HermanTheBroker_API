@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace HermanTheBrokerAPI.Models
 {
-	public class House
+	public enum Category
+    {
+		Bostadsrättslägenhet,
+        Bostadsrättsradhus,
+        Villa,
+        Fritidshus
+    }
+    public class House
 	{
-		[Key]
 		public int HouseId { get; set; }
         public string Street { get; set; }
 		public string City { get; set; }
@@ -17,9 +23,10 @@ namespace HermanTheBrokerAPI.Models
 		public int BuildYear { get; set; }
         public int NoOfFloors { get; set; }
         public int NoOfRooms { get; set; }
-        public int CategoryId { get; set; }	
+        public Category? Category { get; set; }
+        public int BrokerId { get; set; }
+        public Broker Broker { get; set; }
 
-        //public Broker Broker { get; set; }
 
     }
 }

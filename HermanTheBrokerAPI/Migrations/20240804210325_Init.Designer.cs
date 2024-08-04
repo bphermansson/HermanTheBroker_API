@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HermanTheBrokerAPI.Migrations
 {
-    [DbContext(typeof(ResidencesContext))]
-    [Migration("20240729092613_Init")]
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20240804210325_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace HermanTheBrokerAPI.Migrations
 
             modelBuilder.Entity("HermanTheBrokerAPI.Models.Broker", b =>
                 {
-                    b.Property<int>("BrokerId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrokerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40,47 +40,34 @@ namespace HermanTheBrokerAPI.Migrations
                     b.Property<long>("PhoneNumber")
                         .HasColumnType("bigint");
 
-                    b.HasKey("BrokerId");
+                    b.HasKey("ID");
 
                     b.ToTable("Broker");
-                });
-
-            modelBuilder.Entity("HermanTheBrokerAPI.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Category");
 
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
-                            Name = "Bostadsrättslägenhet"
+                            ID = 1,
+                            Name = "Jeff",
+                            PhoneNumber = 456L
                         },
                         new
                         {
-                            CategoryId = 2,
-                            Name = "Bostadsrättsradhus"
+                            ID = 2,
+                            Name = "Kerry",
+                            PhoneNumber = 0L
                         },
                         new
                         {
-                            CategoryId = 3,
-                            Name = "Villa"
+                            ID = 3,
+                            Name = "Tom",
+                            PhoneNumber = 0L
                         },
                         new
                         {
-                            CategoryId = 4,
-                            Name = "Fritidshus"
+                            ID = 4,
+                            Name = "Dave",
+                            PhoneNumber = 0L
                         });
                 });
 
@@ -95,13 +82,13 @@ namespace HermanTheBrokerAPI.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BrokerId")
+                    b.Property<int>("BrokerId")
                         .HasColumnType("int");
 
                     b.Property<int>("BuildYear")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("Category")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -129,8 +116,9 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 1,
                             Area = 200,
+                            BrokerId = -1,
                             BuildYear = 1984,
-                            CategoryId = 2,
+                            Category = 2,
                             City = "Vänersborg",
                             NoOfFloors = 2,
                             NoOfRooms = 7,
@@ -140,8 +128,8 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 2,
                             Area = 123,
+                            BrokerId = 0,
                             BuildYear = 1999,
-                            CategoryId = 1,
                             City = "Trollhättan",
                             NoOfFloors = 1,
                             NoOfRooms = 4,
@@ -151,8 +139,8 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 3,
                             Area = 80,
+                            BrokerId = 0,
                             BuildYear = 1909,
-                            CategoryId = 4,
                             City = "Uddevalla",
                             NoOfFloors = 1,
                             NoOfRooms = 2,
@@ -162,8 +150,8 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 4,
                             Area = 275,
+                            BrokerId = 0,
                             BuildYear = 2011,
-                            CategoryId = 3,
                             City = "Grästorp",
                             NoOfFloors = 3,
                             NoOfRooms = 8,
@@ -371,9 +359,13 @@ namespace HermanTheBrokerAPI.Migrations
 
             modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
                 {
-                    b.HasOne("HermanTheBrokerAPI.Models.Broker", null)
+                    b.HasOne("HermanTheBrokerAPI.Models.Broker", "Broker")
                         .WithMany("House")
-                        .HasForeignKey("BrokerId");
+                        .HasForeignKey("BrokerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Broker");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
