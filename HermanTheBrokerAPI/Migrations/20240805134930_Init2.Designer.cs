@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HermanTheBrokerAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240804210325_Init")]
-    partial class Init
+    [Migration("20240805134930_Init2")]
+    partial class Init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace HermanTheBrokerAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("HermanTheBrokerAPI.Models.Broker", b =>
+            modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -33,57 +33,11 @@ namespace HermanTheBrokerAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("PhoneNumber")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Broker");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Jeff",
-                            PhoneNumber = 456L
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Kerry",
-                            PhoneNumber = 0L
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Tom",
-                            PhoneNumber = 0L
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Dave",
-                            PhoneNumber = 0L
-                        });
-                });
-
-            modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
-                {
-                    b.Property<int>("HouseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseId"));
-
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
-                    b.Property<int>("BrokerId")
-                        .HasColumnType("int");
+                    b.Property<string>("BrokerId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("BuildYear")
                         .HasColumnType("int");
@@ -95,6 +49,9 @@ namespace HermanTheBrokerAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
                     b.Property<int>("NoOfFloors")
                         .HasColumnType("int");
 
@@ -105,7 +62,7 @@ namespace HermanTheBrokerAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("HouseId");
+                    b.HasKey("ID");
 
                     b.HasIndex("BrokerId");
 
@@ -114,45 +71,45 @@ namespace HermanTheBrokerAPI.Migrations
                     b.HasData(
                         new
                         {
-                            HouseId = 1,
+                            ID = 1,
                             Area = 200,
-                            BrokerId = -1,
                             BuildYear = 1984,
                             Category = 2,
                             City = "Vänersborg",
+                            HouseId = 1,
                             NoOfFloors = 2,
                             NoOfRooms = 7,
                             Street = "Storgatan"
                         },
                         new
                         {
-                            HouseId = 2,
+                            ID = 2,
                             Area = 123,
-                            BrokerId = 0,
                             BuildYear = 1999,
                             City = "Trollhättan",
+                            HouseId = 2,
                             NoOfFloors = 1,
                             NoOfRooms = 4,
                             Street = "Drottninggatan"
                         },
                         new
                         {
-                            HouseId = 3,
+                            ID = 3,
                             Area = 80,
-                            BrokerId = 0,
                             BuildYear = 1909,
                             City = "Uddevalla",
+                            HouseId = 3,
                             NoOfFloors = 1,
                             NoOfRooms = 2,
                             Street = "Kungsgatan"
                         },
                         new
                         {
-                            HouseId = 4,
+                            ID = 4,
                             Area = 275,
-                            BrokerId = 0,
                             BuildYear = 2011,
                             City = "Grästorp",
+                            HouseId = 4,
                             NoOfFloors = 3,
                             NoOfRooms = 8,
                             Street = "Odinsgatan"
@@ -223,6 +180,11 @@ namespace HermanTheBrokerAPI.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -274,6 +236,10 @@ namespace HermanTheBrokerAPI.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -357,13 +323,22 @@ namespace HermanTheBrokerAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("HermanTheBrokerAPI.Models.Broker", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Broker");
+                });
+
             modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
                 {
                     b.HasOne("HermanTheBrokerAPI.Models.Broker", "Broker")
                         .WithMany("House")
-                        .HasForeignKey("BrokerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BrokerId");
 
                     b.Navigation("Broker");
                 });

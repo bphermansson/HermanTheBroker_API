@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HermanTheBrokerAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Init2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,8 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -50,20 +52,6 @@ namespace HermanTheBrokerAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Broker",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Broker", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,8 +164,9 @@ namespace HermanTheBrokerAPI.Migrations
                 name: "House",
                 columns: table => new
                 {
-                    HouseId = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    HouseId = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<int>(type: "int", nullable: false),
@@ -185,39 +174,27 @@ namespace HermanTheBrokerAPI.Migrations
                     NoOfFloors = table.Column<int>(type: "int", nullable: false),
                     NoOfRooms = table.Column<int>(type: "int", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: true),
-                    BrokerId = table.Column<int>(type: "int", nullable: false)
+                    BrokerId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_House", x => x.HouseId);
+                    table.PrimaryKey("PK_House", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_House_Broker_BrokerId",
+                        name: "FK_House_AspNetUsers_BrokerId",
                         column: x => x.BrokerId,
-                        principalTable: "Broker",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Broker",
-                columns: new[] { "ID", "Name", "PhoneNumber" },
-                values: new object[,]
-                {
-                    { -1, "Jeff", 456L },
-                    { -2, "Kerry", 0L },
-                    { -3, "Tom", 0L },
-                    { -4, "Dave", 0L }
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "House",
-                columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "NoOfFloors", "NoOfRooms", "Street" },
+                columns: new[] { "ID", "Area", "BrokerId", "BuildYear", "Category", "City", "HouseId", "NoOfFloors", "NoOfRooms", "Street" },
                 values: new object[,]
                 {
-                    { 1, 200, -1, 1984, 2, "Vänersborg", 2, 7, "Storgatan" },
-                    { 2, 123, -1, 1999, 2, "Trollhättan", 1, 4, "Drottninggatan" },
-                    { 3, 80, -1, 1909, 2, "Uddevalla", 1, 2, "Kungsgatan" },
-                    { 4, 275, -1, 2011, 2, "Grästorp", 3, 8, "Odinsgatan" }
+                    { 1, 200, null, 1984, 2, "Vänersborg", 1, 2, 7, "Storgatan" },
+                    { 2, 123, null, 1999, null, "Trollhättan", 2, 1, 4, "Drottninggatan" },
+                    { 3, 80, null, 1909, null, "Uddevalla", 3, 1, 2, "Kungsgatan" },
+                    { 4, 275, null, 2011, null, "Grästorp", 4, 3, 8, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -291,9 +268,6 @@ namespace HermanTheBrokerAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Broker");
         }
     }
 }

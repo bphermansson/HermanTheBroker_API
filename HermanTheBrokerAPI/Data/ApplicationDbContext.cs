@@ -34,10 +34,10 @@ namespace HermanTheBrokerAPI.Data
         {
             base.OnModelCreating(modelBuilder);
             
-            modelBuilder.Entity<Broker>().HasData(new Broker { ID = 1, Name = "Jeff", PhoneNumber=456 });
-            modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Kerry", ID = 2 });
-            modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Tom", ID = 3 });
-            modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Dave", ID = 4 });
+            //modelBuilder.Entity<Broker>().HasData(new Broker { ID = 1, Name = "Jeff", PhoneNumber=456 });
+            //modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Kerry", ID = 2 });
+            //modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Tom", ID = 3 });
+            //modelBuilder.Entity<Broker>().HasData(new Broker { Name = "Dave", ID = 4 });
 
             modelBuilder.Entity<House>().HasData(
              new House
@@ -50,7 +50,7 @@ namespace HermanTheBrokerAPI.Data
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerId = -1
+                 ID = 1
              }
          );
 
@@ -64,7 +64,7 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 1999,
                     NoOfFloors = 1,
                     NoOfRooms = 4,
-                    //                    Broker = new Broker { BrokerId = 2 }
+                    ID = 2
                 }
             );
             modelBuilder.Entity<House>().HasData(
@@ -77,7 +77,7 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 1909,
                     NoOfFloors = 1,
                     NoOfRooms = 2,
-                    //                    Broker = new Broker { BrokerId = 1 }
+                    ID = 3
                 }
             );
             modelBuilder.Entity<House>().HasData(
@@ -90,7 +90,7 @@ namespace HermanTheBrokerAPI.Data
                     BuildYear = 2011,
                     NoOfFloors = 3,
                     NoOfRooms = 8,
-                    //                    Broker = new Broker { BrokerId = 3 }
+                    ID = 4
                 }
             );
         }

@@ -24,7 +24,7 @@ namespace HermanTheBrokerAPI.Models
         public int NoOfFloors { get; set; }
         public int NoOfRooms { get; set; }
         public Category? Category { get; set; }
-        public int BrokerId { get; set; }
+        public int ID { get; set; }
         public Broker Broker { get; set; }
 
 
