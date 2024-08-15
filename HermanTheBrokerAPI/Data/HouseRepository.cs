@@ -34,6 +34,12 @@ namespace HermanTheBrokerAPI.Data
                  .Where(s => s.City == searchobject.City)
                  .ToList();
             }
+            else if (searchobject.NoOfRooms > 0)
+            {
+                return context.House
+                 .Where(s => s.NoOfRooms == searchobject.NoOfRooms)
+                 .ToList();
+            }
             return null;
         }
         public House GetById(int id)

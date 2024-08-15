@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using HermanTheBrokerAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,9 +24,9 @@ namespace HermanTheBrokerAPI.Controllers
         // GET: /api/Visitor/Search/{minsize}/{maxsize}/{city}/{category}
         [HttpGet("minsize_maxsize{minsize}/{maxsize}")]
         [HttpGet("city/{city}")]
-        [HttpGet("category/{category}")]
+        [HttpGet("noofrooms/{noofrooms}")]
 
-        public async Task<IActionResult> HouseSearch(int? minsize=0, int? maxsize=0, string? city="", string? category="")
+        public async Task<IActionResult> HouseSearch(int? minsize=0, int? maxsize=0, string? city="", int? noofrooms=0)
         {
             var route = Request.Path.Value.Split("/");
             if (route[3].ToString() == "minsize")
@@ -34,10 +35,7 @@ namespace HermanTheBrokerAPI.Controllers
                 {
                     minsize = 0;
                 }
-
             }
-
-
             if (maxsize == null)
             {
                 maxsize = 1000;
@@ -46,12 +44,12 @@ namespace HermanTheBrokerAPI.Controllers
             {
                 city = string.Empty;
             }
-            if (category == null)
+            if (noofrooms == null)
             {
-                category = string.Empty;
+                noofrooms = 0;
             }
             var Searchstring = new Searchobject
-            { Minsize = minsize, Maxsize = maxsize, City = city, Category = category };   
+            { Minsize = minsize, Maxsize = maxsize, City = city, NoOfRooms = noofrooms };   
 
             IEnumerable<Models.House> house = houseRepository.Search(Searchstring);
             string jsonData = JsonConvert.SerializeObject(house);
