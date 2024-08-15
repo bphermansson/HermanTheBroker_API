@@ -1,8 +1,6 @@
-﻿using HermanTheBrokerAPI.Data;
-using HermanTheBrokerAPI.Models;
-using Microsoft.Build.Logging;
+﻿using HermanTheBrokerAPI.Models;
+using HermanTheBrokerAPI.Classes;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 namespace HermanTheBrokerAPI.Data
 {
@@ -16,30 +14,32 @@ namespace HermanTheBrokerAPI.Data
         public IEnumerable<House> GetAll()
         {
             var houses = context.House
-            //.Include(house => house.BrokerId)
+            .Include(house => house.Broker)
             .ToList();
             return houses;
         }
-        public IEnumerable<House> Search(string? searchword)
+        public IEnumerable<House> Search(Searchobject searchobject)
         {
-            var house = context.House
-                .Where(s => s.Street.Contains(searchword) 
-                || s.City.Contains(searchword)
-                || s.Area.Equals(searchword)
-                || s.BuildYear.Equals(searchword)
-                || s.NoOfFloors.Equals(searchword)
-                || s.NoOfRooms.Equals(searchword))
-                .ToList();
-            return house;
+            if (searchobject.Minsize > 0)
+            {
+                var house = context.House
+               .Where(s => s.Area > searchobject.Minsize
+               && s.Area < searchobject.Maxsize)
+               .ToList();
+                return house;
+            }
+            else if (searchobject.City.Length!=0)
+            {
+                return context.House
+                 .Where(s => s.City == searchobject.City)
+                 .ToList();
+            }
+            return null;
         }
-        public IEnumerable<House> GetById(int id)
+        public House GetById(int id)
         {
             var house = context.House.First(i => i.HouseId == id);
-            List<House> result = new List<House>();
-            //result.Add(house);
-            return result;
+            return house;
         }
-
     }
-
 }
