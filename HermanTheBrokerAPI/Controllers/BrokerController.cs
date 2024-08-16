@@ -1,27 +1,44 @@
 ﻿using HermanTheBrokerAPI.Data;
+using HermanTheBrokerAPI.Models;
+using IdentityTest;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Newtonsoft.Json;
 
 namespace HermanTheBrokerAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class BrokerController : ControllerBase
     {
-        private readonly ResidencesContext _context;
-
-        public BrokerController(ResidencesContext context)
+        private readonly ApplicationDbContext _context;
+        private IBrokerRepository brokerRepository;
+        public BrokerController(IBrokerRepository brokerRepository)
         {
-            _context = context;
+            this.brokerRepository = brokerRepository;
         }
+        //public BrokerController(ResidencesContext context)
+        //{
+        //    _context = context;
+        //}
+
         //BrokerDetails
-        // GET: /api/Visitor/{brokerid}
+        // GET: /api/Broker/{brokerid}
         [HttpGet("{brokerid}")]
         public IEnumerable<string> Get(int brokerid)
         {
             return new string[] { "value1", "value2" };
         }
-
+        [HttpGet("Brokers")]
+        //[Authorize]
+        public IActionResult Brokers()
+        {
+            IEnumerable<IdentityUser> broker = brokerRepository.GetAll();
+            string jsonData = JsonConvert.SerializeObject(broker);
+            return Content(jsonData, "application/json");
+        }
     }
 }

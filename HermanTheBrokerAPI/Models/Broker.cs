@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace HermanTheBrokerAPI.Models
 {
-	public class Broker
+	public class Broker : IdentityUser
 	{
-		[Key]
-		public int BrokerId { get; set; }
+		//public int ID { get; set; }
         public string Name { get; set; }
 		public long PhoneNumber { get; set; }
 		public virtual ICollection<House> House { get; set; }

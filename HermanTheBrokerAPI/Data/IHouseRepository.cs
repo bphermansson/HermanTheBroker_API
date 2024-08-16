@@ -1,4 +1,5 @@
 ﻿using HermanTheBrokerAPI.Models;
+using HermanTheBrokerAPI.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace HermanTheBrokerAPI.Data
 {
     public interface IHouseRepository
     {
-        IEnumerable<House> Search(string? searchword);
+        IEnumerable<House> Search(Searchobject searchstring);
         IEnumerable<House> GetAll();
-        IEnumerable<House> GetById(int id);
+        House GetById(int id);
     }
 }

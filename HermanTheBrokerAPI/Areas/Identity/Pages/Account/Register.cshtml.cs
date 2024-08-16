@@ -32,7 +32,7 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<HermanTheBrokerAPIUser> userManager,
+        UserManager<HermanTheBrokerAPIUser> userManager,
             IUserStore<HermanTheBrokerAPIUser> userStore,
             SignInManager<HermanTheBrokerAPIUser> signInManager,
             ILogger<RegisterModel> logger,
