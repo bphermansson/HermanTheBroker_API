@@ -21,35 +21,34 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         //HouseSearch
-        // GET: /api/Visitor/Search/{minsize}/{maxsize}/{city}/{category}
+        // GET: /api/Visitor/Search/{minsize}/{maxsize}/{city}/{noofrooms}
+        [HttpGet("Search/{minsize}/{maxsize}/{city}/{noofrooms}")]
+        [HttpGet("minsize{minsize}")]
+        [HttpGet("maxsize{maxsize}")]
         [HttpGet("minsize_maxsize{minsize}/{maxsize}")]
-        [HttpGet("city/{city}")]
         [HttpGet("noofrooms/{noofrooms}")]
+        [HttpGet("city/{city}")]
 
         public async Task<IActionResult> HouseSearch(int? minsize=0, int? maxsize=0, string? city="", int? noofrooms=0)
         {
-            var route = Request.Path.Value.Split("/");
-            if (route[3].ToString() == "minsize")
+            if (minsize == null)
             {
-                if (minsize == null)
-                {
-                    minsize = 0;
-                }
+                minsize = 0;
             }
             if (maxsize == null)
             {
                 maxsize = 1000;
             }
-            if (city == null)
-            {
-                city = string.Empty;
-            }
             if (noofrooms == null)
             {
                 noofrooms = 0;
             }
+            //if (city == null)
+            //{
+            //    city = string.Empty;
+            //}
             var Searchstring = new Searchobject
-            { Minsize = minsize, Maxsize = maxsize, City = city, NoOfRooms = noofrooms };   
+            { Minsize = minsize, Maxsize = maxsize, NoOfRooms = noofrooms, City = city };   
 
             IEnumerable<Models.House> house = houseRepository.Search(Searchstring);
             string jsonData = JsonConvert.SerializeObject(house);

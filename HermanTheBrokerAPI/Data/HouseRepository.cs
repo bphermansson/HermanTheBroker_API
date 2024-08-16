@@ -23,21 +23,35 @@ namespace HermanTheBrokerAPI.Data
             if (searchobject.Minsize > 0)
             {
                 var house = context.House
-               .Where(s => s.Area > searchobject.Minsize
-               && s.Area < searchobject.Maxsize)
+               .Where(s => s.Area > searchobject.Minsize)
                .ToList();
                 return house;
             }
-            else if (searchobject.City.Length!=0)
+            else if (searchobject.Maxsize > 0)
             {
-                return context.House
-                 .Where(s => s.City == searchobject.City)
-                 .ToList();
+                var house = context.House
+               .Where(s => s.Area < searchobject.Maxsize)
+               .ToList();
+                return house;
+            }
+            else if (searchobject.Minsize > 0 && searchobject.Maxsize > 0)
+            {
+                var house = context.House
+               .Where(s => s.Area > searchobject.Maxsize
+               && s.Area < searchobject.Maxsize)
+               .ToList();
+                return house;
             }
             else if (searchobject.NoOfRooms > 0)
             {
                 return context.House
                  .Where(s => s.NoOfRooms == searchobject.NoOfRooms)
+                 .ToList();
+            }
+            else if (searchobject.City.Length!=0)
+            {
+                return context.House
+                 .Where(s => s.City == searchobject.City)
                  .ToList();
             }
             return null;
