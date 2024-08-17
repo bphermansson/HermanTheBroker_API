@@ -1,14 +1,7 @@
 ﻿using HermanTheBrokerAPI.Models;
-using IdentityTest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
-using System.Drawing;
-using System;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static System.Net.Mime.MediaTypeNames;
 
 // update-database 0
 // remove-migration

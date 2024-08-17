@@ -2,7 +2,6 @@
 using HermanTheBrokerAPI.Models;
 using IdentityTest;
 using HermanTheBrokerAPI.Models;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace HermanTheBrokerAPI.Data

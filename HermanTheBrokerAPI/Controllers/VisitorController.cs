@@ -56,7 +56,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("Houses")]
-        //[Authorize]
+        [Authorize]
         public IActionResult Houses()
         {
             IEnumerable<Models.House> house = houseRepository.GetAll();
@@ -71,7 +71,4 @@ namespace HermanTheBrokerAPI.Controllers
             return Content(jsonData, "application/json");
         }
     }
-    }
-
-// hermansson.patrik2@gmail.com
-// stringABC123-
+}

@@ -1,7 +1,6 @@
 ﻿using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using IdentityTest;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,10 +19,6 @@ namespace HermanTheBrokerAPI.Controllers
         {
             this.brokerRepository = brokerRepository;
         }
-        //public BrokerController(ResidencesContext context)
-        //{
-        //    _context = context;
-        //}
 
         //BrokerDetails
         // GET: /api/Broker/{brokerid}
