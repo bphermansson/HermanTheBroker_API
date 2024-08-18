@@ -1,6 +1,7 @@
 ﻿using HermanTheBrokerAPI.Models;
 using HermanTheBrokerAPI.Classes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HermanTheBrokerAPI.Data
 {
@@ -14,7 +15,7 @@ namespace HermanTheBrokerAPI.Data
         public IEnumerable<House> GetAll()
         {
             var houses = context.House
-            .Include(house => house.Broker)
+            //.Include(house => house.Broker)
             .ToList();
             return houses;
         }
@@ -60,6 +61,12 @@ namespace HermanTheBrokerAPI.Data
         {
             var house = context.House.First(i => i.HouseId == id);
             return house;
+        }
+        public async Task<IActionResult> NewHouse(House house)
+        {
+            context.House.Add(house);
+            await context.SaveChangesAsync();
+            return null;
         }
     }
 }

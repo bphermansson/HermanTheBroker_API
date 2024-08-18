@@ -12,10 +12,10 @@ namespace HermanTheBrokerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VisitorController : Controller
+    public class HouseController : Controller
     {
         private IHouseRepository houseRepository;
-        public VisitorController(IHouseRepository houseRepository)
+        public HouseController(IHouseRepository houseRepository)
         {
             this.houseRepository = houseRepository;
         }
@@ -29,7 +29,7 @@ namespace HermanTheBrokerAPI.Controllers
         [HttpGet("noofrooms/{noofrooms}")]
         [HttpGet("city/{city}")]
 
-        public async Task<IActionResult> HouseSearch(int? minsize=0, int? maxsize=0, string? city="", int? noofrooms=0)
+        public async Task<IActionResult> HouseSearch(int? minsize = 0, int? maxsize = 0, string? city = "", int? noofrooms = 0)
         {
             if (minsize == null)
             {
@@ -48,7 +48,7 @@ namespace HermanTheBrokerAPI.Controllers
             //    city = string.Empty;
             //}
             var Searchstring = new Searchobject
-            { Minsize = minsize, Maxsize = maxsize, NoOfRooms = noofrooms, City = city };   
+            { Minsize = minsize, Maxsize = maxsize, NoOfRooms = noofrooms, City = city };
 
             IEnumerable<Models.House> house = houseRepository.Search(Searchstring);
             string jsonData = JsonConvert.SerializeObject(house);
@@ -69,6 +69,19 @@ namespace HermanTheBrokerAPI.Controllers
             Models.House house = houseRepository.GetById(id);
             string jsonData = JsonConvert.SerializeObject(house);
             return Content(jsonData, "application/json");
+        }
+        [HttpPost("NewHouse")]
+        public ActionResult NewHouse(House house)
+        {
+            try
+            {
+                houseRepository.NewHouse(house);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }
