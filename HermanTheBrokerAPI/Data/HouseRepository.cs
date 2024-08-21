@@ -2,6 +2,8 @@
 using HermanTheBrokerAPI.Classes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
+using System.Xml;
 
 namespace HermanTheBrokerAPI.Data
 {
@@ -49,7 +51,7 @@ namespace HermanTheBrokerAPI.Data
                  .Where(s => s.NoOfRooms == searchobject.NoOfRooms)
                  .ToList();
             }
-            else if (searchobject.City.Length!=0)
+            else if (searchobject.City.Length != 0)
             {
                 return context.House
                  .Where(s => s.City == searchobject.City)
@@ -62,10 +64,39 @@ namespace HermanTheBrokerAPI.Data
             var house = context.House.First(i => i.HouseId == id);
             return house;
         }
-        public async Task<IActionResult> NewHouse(House house)
+        //public async Task<IActionResult> NewHouse(House house)
+        //{
+        //    context.House.Add(house);
+        //    await context.SaveChangesAsync();
+        //    return null;
+        //}
+        public void NewHouse(House house)
         {
+            context.Entry(house).State = EntityState.Modified;
+            //bool hasChanges = context.ChangeTracker.HasChanges();
             context.House.Add(house);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
+           // return null;
+        }
+        public async Task<IActionResult> EditHouse(House house)
+        {
+            //context.Entry(house).State = EntityState.Modified;
+            //bool hasChanges = context.ChangeTracker.HasChanges();
+            context.Entry(house).State = EntityState.Modified;
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            return null;
+        }
+        public async Task<IActionResult> RemoveHouse(House house)
+        {
+            context.House.Remove(house);
+            context.SaveChanges();
             return null;
         }
     }

@@ -14,7 +14,10 @@ namespace HermanTheBrokerAPI.Data
         IEnumerable<House> Search(Searchobject searchstring);
         IEnumerable<House> GetAll();
         House GetById(int id);
-        Task<IActionResult> NewHouse(House house);
+        // Task<IActionResult> NewHouse(House house);
+        void NewHouse(House house);
+        Task<IActionResult> EditHouse(House house);
+        Task<IActionResult> RemoveHouse(House house);
 
     }
 }

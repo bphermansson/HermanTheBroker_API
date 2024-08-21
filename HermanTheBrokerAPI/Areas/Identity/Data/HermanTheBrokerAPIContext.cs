@@ -1,7 +1,7 @@
-﻿using HermanTheBrokerAPI.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using HermanTheBrokerAPI.Models;
 
 namespace HermanTheBrokerAPI.Data;
 
@@ -18,9 +18,5 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<HermanTheBrokerAPIUse
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
-    }
-
-    public class User : IdentityUser
-    {
     }
 }

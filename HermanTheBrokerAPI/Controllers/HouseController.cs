@@ -56,7 +56,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("Houses")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Houses()
         {
             IEnumerable<Models.House> house = houseRepository.GetAll();
@@ -76,6 +76,32 @@ namespace HermanTheBrokerAPI.Controllers
             try
             {
                 houseRepository.NewHouse(house);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("EditHouse")]
+        public ActionResult EditHouse(House house)
+        {
+            try
+            {
+                houseRepository.EditHouse(house);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("RemoveHouse")]
+        public ActionResult RemoveHouse(House house)
+        {
+            try
+            {
+                houseRepository.RemoveHouse(house);
                 return Ok();
             }
             catch (Exception ex)

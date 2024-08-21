@@ -22,11 +22,11 @@ namespace HermanTheBrokerAPI.Controllers
 
         //BrokerDetails
         // GET: /api/Broker/{brokerid}
-        [HttpGet("{brokerid}")]
-        public IEnumerable<string> Get(int brokerid)
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet("{brokerid}")]
+        //public IEnumerable<string> Get(int brokerid)
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
         [HttpGet("Brokers")]
         //[Authorize]
         public IActionResult Brokers()
@@ -34,6 +34,40 @@ namespace HermanTheBrokerAPI.Controllers
             IEnumerable<IdentityUser> broker = brokerRepository.GetAll();
             string jsonData = JsonConvert.SerializeObject(broker);
             return Content(jsonData, "application/json");
+        }
+        [HttpGet("{email}")]
+        //[Authorize]
+        public IActionResult GetBrokerByEmail(string email)
+        {
+            IdentityUser broker = brokerRepository.GetBrokerByEmail(email);
+            string jsonData = JsonConvert.SerializeObject(broker);
+            return Content(jsonData, "application/json");
+        }
+        [HttpPost("EditBroker")]
+        public ActionResult EditBroker(HermanTheBrokerAPIUser uid)
+        {
+            try
+            {
+                brokerRepository.EditBroker(uid);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("RemoveBroker")]
+        public ActionResult RemoveBroker(HermanTheBrokerAPIUser uid)
+        {
+            try
+            {
+                brokerRepository.RemoveBroker(uid);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }
