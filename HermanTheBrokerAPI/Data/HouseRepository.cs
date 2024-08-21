@@ -60,9 +60,9 @@ namespace HermanTheBrokerAPI.Data
             }
             return null;
         }
-        public House GetById(int id)
+        public House GetById(string id)
         {
-            var house = context.House.First(i => i.HouseId == id);
+            var house = context.House.First(i => i.Id == id);
             return house;
         }
         //public async Task<IActionResult> NewHouse(House house)

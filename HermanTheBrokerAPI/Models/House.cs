@@ -16,7 +16,7 @@ namespace HermanTheBrokerAPI.Models
     }
     public class House
 	{
-        public int ID { get; set; }
+        public string Id { get; set; }
         public int HouseId { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
@@ -27,8 +27,8 @@ namespace HermanTheBrokerAPI.Models
         public Category? Category { get; set; }
         public string? Status { get; set; }
         public bool Error { get; set; }
-        //public Broker Broker { get; set; }
-        public Broker HermanTheBrokerAPIUser { get; set; }
+        public string BrokerId { get; set; }
+        public Broker Broker { get; set; }
 
 
     }

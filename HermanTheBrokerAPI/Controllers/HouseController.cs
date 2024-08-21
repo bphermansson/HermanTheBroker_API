@@ -43,10 +43,6 @@ namespace HermanTheBrokerAPI.Controllers
             {
                 noofrooms = 0;
             }
-            //if (city == null)
-            //{
-            //    city = string.Empty;
-            //}
             var Searchstring = new Searchobject
             { Minsize = minsize, Maxsize = maxsize, NoOfRooms = noofrooms, City = city };
 
@@ -64,7 +60,7 @@ namespace HermanTheBrokerAPI.Controllers
             return Content(jsonData, "application/json");
         }
         [HttpGet("HouseById")]
-        public IActionResult GetHouseById(int id)
+        public IActionResult GetHouseById(string id)
         {
             Models.House house = houseRepository.GetById(id);
             string jsonData = JsonConvert.SerializeObject(house);
