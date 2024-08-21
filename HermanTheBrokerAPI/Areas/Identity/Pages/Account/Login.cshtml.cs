@@ -20,10 +20,10 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<HermanTheBrokerAPIUser> _signInManager;
+        private readonly SignInManager<Broker> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<HermanTheBrokerAPIUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Broker> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

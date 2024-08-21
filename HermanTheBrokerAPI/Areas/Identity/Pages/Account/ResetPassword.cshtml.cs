@@ -17,9 +17,9 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
+        private readonly UserManager<Broker> _userManager;
 
-        public ResetPasswordModel(UserManager<HermanTheBrokerAPIUser> userManager)
+        public ResetPasswordModel(UserManager<Broker> userManager)
         {
             _userManager = userManager;
         }

@@ -15,13 +15,13 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
 {
     public class DeletePersonalDataModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
-        private readonly SignInManager<HermanTheBrokerAPIUser> _signInManager;
+        private readonly UserManager<Broker> _userManager;
+        private readonly SignInManager<Broker> _signInManager;
         private readonly ILogger<DeletePersonalDataModel> _logger;
 
         public DeletePersonalDataModel(
-            UserManager<HermanTheBrokerAPIUser> userManager,
-            SignInManager<HermanTheBrokerAPIUser> signInManager,
+            UserManager<Broker> userManager,
+            SignInManager<Broker> signInManager,
             ILogger<DeletePersonalDataModel> logger)
         {
             _userManager = userManager;

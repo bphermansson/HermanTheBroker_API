@@ -15,12 +15,12 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
-        private readonly SignInManager<HermanTheBrokerAPIUser> _signInManager;
+        private readonly UserManager<Broker> _userManager;
+        private readonly SignInManager<Broker> _signInManager;
 
         public IndexModel(
-            UserManager<HermanTheBrokerAPIUser> userManager,
-            SignInManager<HermanTheBrokerAPIUser> signInManager)
+            UserManager<Broker> userManager,
+            SignInManager<Broker> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -61,7 +61,7 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(HermanTheBrokerAPIUser user)
+        private async Task LoadAsync(Broker user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

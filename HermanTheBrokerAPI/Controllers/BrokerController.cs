@@ -1,7 +1,5 @@
 ﻿using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
-using IdentityTest;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -13,7 +11,7 @@ namespace HermanTheBrokerAPI.Controllers
     [ApiController]
     public class BrokerController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly Broker _context;
         private IBrokerRepository brokerRepository;
         public BrokerController(IBrokerRepository brokerRepository)
         {
@@ -44,7 +42,7 @@ namespace HermanTheBrokerAPI.Controllers
             return Content(jsonData, "application/json");
         }
         [HttpPost("EditBroker")]
-        public ActionResult EditBroker(HermanTheBrokerAPIUser uid)
+        public ActionResult EditBroker(Broker uid)
         {
             try
             {
@@ -57,7 +55,7 @@ namespace HermanTheBrokerAPI.Controllers
             }
         }
         [HttpPost("RemoveBroker")]
-        public ActionResult RemoveBroker(HermanTheBrokerAPIUser uid)
+        public ActionResult RemoveBroker(Broker uid)
         {
             try
             {

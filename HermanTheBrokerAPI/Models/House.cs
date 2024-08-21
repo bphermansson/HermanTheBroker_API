@@ -28,7 +28,7 @@ namespace HermanTheBrokerAPI.Models
         public string? Status { get; set; }
         public bool Error { get; set; }
         //public Broker Broker { get; set; }
-        public HermanTheBrokerAPIUser HermanTheBrokerAPIUser { get; set; }
+        public Broker HermanTheBrokerAPIUser { get; set; }
 
 
     }

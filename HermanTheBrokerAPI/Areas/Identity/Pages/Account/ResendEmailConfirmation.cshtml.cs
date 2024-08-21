@@ -20,10 +20,10 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
+        private readonly UserManager<Broker> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ResendEmailConfirmationModel(UserManager<HermanTheBrokerAPIUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(UserManager<Broker> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

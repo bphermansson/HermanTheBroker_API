@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
 using System.Xml;
+using HermanTheBrokerAPI.Areas.Identity.Data;
 
 namespace HermanTheBrokerAPI.Data
 {
     public class HouseRepository : IHouseRepository
     {
-        private ApplicationDbContext context;
-        public HouseRepository(ApplicationDbContext context)
+        private HermanTheBrokerAPIContext context;
+        public HouseRepository(HermanTheBrokerAPIContext context)
         {
             this.context = context;
         }

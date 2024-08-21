@@ -1,4 +1,5 @@
-﻿using HermanTheBrokerAPI.Models;
+﻿using HermanTheBrokerAPI.Areas.Identity.Data;
+using HermanTheBrokerAPI.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,8 @@ namespace HermanTheBrokerAPI.Data
 {
     public class BrokerRepository : IBrokerRepository
     {
-        private ApplicationDbContext context;
-        public BrokerRepository(ApplicationDbContext context)
+        private HermanTheBrokerAPIContext context;
+        public BrokerRepository(HermanTheBrokerAPIContext context)
         {
             this.context = context;
         }
@@ -34,7 +35,7 @@ namespace HermanTheBrokerAPI.Data
            // IEnumerable<IdentityUser> result = new List<IdentityUser>();
             return broker;
         }
-        public async Task<IActionResult> EditBroker(HermanTheBrokerAPIUser uid)
+        public async Task<IActionResult> EditBroker(Broker uid)
         {
             context.Entry(uid).State = EntityState.Modified;
             //bool hasChanges = context.ChangeTracker.HasChanges();
@@ -51,7 +52,7 @@ namespace HermanTheBrokerAPI.Data
         }
 
         // This we dont need...
-        public async Task<bool> RemoveBroker(HermanTheBrokerAPIUser uid)
+        public async Task<bool> RemoveBroker(Broker uid)
         {
             try
             {

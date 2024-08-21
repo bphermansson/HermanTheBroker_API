@@ -2,12 +2,12 @@ using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using IdentityTest;
 using HermanTheBrokerAPI;
 using System.Security.Claims;
 using Microsoft.AspNetCore.HttpLogging;
 using Nist.Errors;
 using System.Net;
+using HermanTheBrokerAPI.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddProblemDetails();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
+builder.Services.AddDbContext<HermanTheBrokerAPIContext>(options => options.UseSqlServer
 ("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
 builder.Services.AddTransient<IHouseRepository, HouseRepository>();
-builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
+//builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,7 +32,7 @@ builder.Services.AddHttpLogging(o => { });
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<HermanTheBrokerAPIContext>();
 
 var app = builder.Build();
 
@@ -51,10 +51,9 @@ app.UseStatusCodePages();
 app.MapSwagger().RequireAuthorization();
 
 app.MapControllers();
-app.MapIdentityApi<IdentityUser>();
 
 // Identity
-app.MapGroup("/identity").MapIdentityApi<IdentityUser>();
+app.MapGroup("/identity").MapIdentityApi<Broker>();
 
 // For testing
 // app.MapGet("/requires-auth", (ClaimsPrincipal user) => $"Hello, {user.Identity?.Name}!").RequireAuthorization();

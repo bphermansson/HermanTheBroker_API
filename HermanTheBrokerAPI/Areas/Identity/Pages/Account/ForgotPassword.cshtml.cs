@@ -19,10 +19,10 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
+        private readonly UserManager<Broker> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<HermanTheBrokerAPIUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<Broker> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

@@ -17,9 +17,9 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
+        private readonly UserManager<Broker> _userManager;
 
-        public ConfirmEmailModel(UserManager<HermanTheBrokerAPIUser> userManager)
+        public ConfirmEmailModel(UserManager<Broker> userManager)
         {
             _userManager = userManager;
         }

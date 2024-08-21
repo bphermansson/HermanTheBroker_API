@@ -1,5 +1,4 @@
 ﻿using HermanTheBrokerAPI.Models;
-using IdentityTest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,8 +13,8 @@ namespace HermanTheBrokerAPI.Data
     {
         public IEnumerable<IdentityUser> GetAll();
         public IdentityUser GetBrokerByEmail(string email);
-        public Task<IActionResult> EditBroker(HermanTheBrokerAPIUser uid);
-        public Task<bool> RemoveBroker(HermanTheBrokerAPIUser uid);
+        public Task<IActionResult> EditBroker(Broker uid);
+        public Task<bool> RemoveBroker(Broker uid);
 
     }
 }

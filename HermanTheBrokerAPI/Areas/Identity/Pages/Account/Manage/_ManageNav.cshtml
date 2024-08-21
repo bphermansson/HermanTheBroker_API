@@ -1,4 +1,4 @@
-﻿@inject SignInManager<HermanTheBrokerAPIUser> SignInManager
+﻿@inject SignInManager<Broker> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

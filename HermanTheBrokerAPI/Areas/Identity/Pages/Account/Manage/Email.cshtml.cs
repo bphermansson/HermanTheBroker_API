@@ -18,13 +18,13 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
-        private readonly SignInManager<HermanTheBrokerAPIUser> _signInManager;
+        private readonly UserManager<Broker> _userManager;
+        private readonly SignInManager<Broker> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<HermanTheBrokerAPIUser> userManager,
-            SignInManager<HermanTheBrokerAPIUser> signInManager,
+            UserManager<Broker> userManager,
+            SignInManager<Broker> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -74,7 +74,7 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(HermanTheBrokerAPIUser user)
+        private async Task LoadAsync(Broker user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;

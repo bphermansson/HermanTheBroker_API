@@ -14,12 +14,12 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
-        private readonly SignInManager<HermanTheBrokerAPIUser> _signInManager;
+        private readonly UserManager<Broker> _userManager;
+        private readonly SignInManager<Broker> _signInManager;
 
         public SetPasswordModel(
-            UserManager<HermanTheBrokerAPIUser> userManager,
-            SignInManager<HermanTheBrokerAPIUser> signInManager)
+            UserManager<Broker> userManager,
+            SignInManager<Broker> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

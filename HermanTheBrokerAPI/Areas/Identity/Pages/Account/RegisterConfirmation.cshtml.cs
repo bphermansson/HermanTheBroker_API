@@ -18,10 +18,10 @@ namespace HermanTheBrokerAPI.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<HermanTheBrokerAPIUser> _userManager;
+        private readonly UserManager<Broker> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<HermanTheBrokerAPIUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<Broker> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;
