@@ -60,7 +60,7 @@ namespace HermanTheBrokerAPI.Data
             }
             return null;
         }
-        public IEnumerable<House> GetById(string id)
+        public House GetById(string id)
         {
             //return context.House
             //    .FirstOrDefault(i => i.Id == id);
@@ -68,7 +68,7 @@ namespace HermanTheBrokerAPI.Data
                 .Include(broker => broker.Broker)
                 .Where(idd => idd.Id == id)
                 .ToList();
-            return res;
+            return res.FirstOrDefault();
         }
         public void NewHouse(House house)
         {
@@ -78,18 +78,19 @@ namespace HermanTheBrokerAPI.Data
             context.SaveChanges();
            // return null;
         }
-        public async Task<IActionResult> EditHouse(House house)
+        public async Task<ActionResult<bool>> EditHouse(House house)
         {
             context.Entry(house).State = EntityState.Modified;
             try
             {
                 context.SaveChanges();
+                return true;
             }
             catch (DbUpdateConcurrencyException)
             {
-                throw;
+                //throw;
+                return false;
             }
-            return null;
         }
         public async Task<IActionResult> RemoveHouse(House house)
         {

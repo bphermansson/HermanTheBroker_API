@@ -13,9 +13,9 @@ namespace HermanTheBrokerAPI.Data
     {
         IEnumerable<House> Search(Searchobject searchstring);
         IEnumerable<House> GetAllHouses();
-        public IEnumerable<House> GetById(string id);
+        public House GetById(string id);
         void NewHouse(House house);
-        Task<IActionResult> EditHouse(House house);
+        Task<ActionResult<bool>> EditHouse(House house);
         Task<IActionResult> RemoveHouse(House house);
 
     }

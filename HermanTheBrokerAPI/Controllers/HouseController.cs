@@ -64,8 +64,8 @@ namespace HermanTheBrokerAPI.Controllers
         [HttpGet("HouseById")]
         public IActionResult GetHouseById(string id)
         {
-            IEnumerable<House> house = houseRepository.GetById(id);
-            string jsonData = JsonConvert.SerializeObject(house.FirstOrDefault(), Formatting.Indented, new JsonSerializerSettings
+            House house = houseRepository.GetById(id);
+            string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             })
