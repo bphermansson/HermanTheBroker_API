@@ -31,7 +31,7 @@ builder.Services.AddHttpLogging(o => { });
 // https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services.AddIdentityApiEndpoints<Broker>()
     .AddEntityFrameworkStores<HermanTheBrokerAPIContext>();
 
 var app = builder.Build();
