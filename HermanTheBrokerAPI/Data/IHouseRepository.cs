@@ -12,9 +12,8 @@ namespace HermanTheBrokerAPI.Data
     public interface IHouseRepository
     {
         IEnumerable<House> Search(Searchobject searchstring);
-        IEnumerable<House> GetAll();
-        House GetById(string id);
-        // Task<IActionResult> NewHouse(House house);
+        IEnumerable<House> GetAllHouses();
+        public IEnumerable<House> GetById(string id);
         void NewHouse(House house);
         Task<IActionResult> EditHouse(House house);
         Task<IActionResult> RemoveHouse(House house);

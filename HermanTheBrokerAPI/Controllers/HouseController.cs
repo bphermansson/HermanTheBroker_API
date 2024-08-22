@@ -2,11 +2,8 @@
 using HermanTheBrokerAPI.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 using HermanTheBrokerAPI.Models;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System;
 
 namespace HermanTheBrokerAPI.Controllers
 {
@@ -21,7 +18,6 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         //HouseSearch
-        // GET: /api/Visitor/Search/{minsize}/{maxsize}/{city}/{noofrooms}
         [HttpGet("Search/{minsize}/{maxsize}/{city}/{noofrooms}")]
         [HttpGet("minsize{minsize}")]
         [HttpGet("maxsize{maxsize}")]
@@ -55,15 +51,25 @@ namespace HermanTheBrokerAPI.Controllers
         //[Authorize]
         public IActionResult Houses()
         {
-            IEnumerable<Models.House> house = houseRepository.GetAll();
-            string jsonData = JsonConvert.SerializeObject(house);
+            IEnumerable<Models.House> house = houseRepository.GetAllHouses();
+
+            string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+
+            //string jsonData = JsonConvert.SerializeObject(house);
             return Content(jsonData, "application/json");
         }
         [HttpGet("HouseById")]
         public IActionResult GetHouseById(string id)
         {
-            Models.House house = houseRepository.GetById(id);
-            string jsonData = JsonConvert.SerializeObject(house);
+            IEnumerable<House> house = houseRepository.GetById(id);
+            string jsonData = JsonConvert.SerializeObject(house.FirstOrDefault(), Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            })
+                ;
             return Content(jsonData, "application/json");
         }
         [HttpPost("NewHouse")]
@@ -79,6 +85,7 @@ namespace HermanTheBrokerAPI.Controllers
                 return BadRequest();
             }
         }
+        // A HttpPut would be better but doesnt work for some reason. 
         [HttpPost("EditHouse")]
         public ActionResult EditHouse(House house)
         {
@@ -92,7 +99,7 @@ namespace HermanTheBrokerAPI.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost("RemoveHouse")]
+        [HttpDelete("RemoveHouse")]
         public ActionResult RemoveHouse(House house)
         {
             try

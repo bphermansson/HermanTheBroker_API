@@ -11,8 +11,8 @@ namespace HermanTheBrokerAPI.Data
 {
     public interface IBrokerRepository
     {
-        public IEnumerable<IdentityUser> GetAll();
-        public IdentityUser GetBrokerByEmail(string email);
+        public IEnumerable<Broker> GetAll();
+        public Broker GetBrokerByEmail(string email);
         public Task<IActionResult> EditBroker(Broker uid);
         public Task<bool> RemoveBroker(Broker uid);
 

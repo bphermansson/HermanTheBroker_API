@@ -54,7 +54,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerId = "a23"
+                 BrokerId = "a23",
              }
             );
         builder.Entity<House>().HasData(

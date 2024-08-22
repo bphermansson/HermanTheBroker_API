@@ -16,13 +16,13 @@ namespace HermanTheBrokerAPI.Data
         {
             this.context = context;
         }
-        public IEnumerable<IdentityUser> GetAll()
+        public IEnumerable<Broker> GetAll()
         {
-            IEnumerable<IdentityUser> users = context.Users.ToList();
+            IEnumerable<Broker> users = context.Users.ToList();
 
             return users;
         }
-        public IdentityUser GetBrokerByEmail(string email)
+        public Broker GetBrokerByEmail(string email)
         {
             // var firstStudentAgain = db.Student
             // .Include(s => s.Grade)

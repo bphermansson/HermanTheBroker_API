@@ -18,26 +18,11 @@ namespace HermanTheBrokerAPI.Controllers
             this.brokerRepository = brokerRepository;
         }
 
-        //BrokerDetails
-        // GET: /api/Broker/{brokerid}
-        //[HttpGet("{brokerid}")]
-        //public IEnumerable<string> Get(int brokerid)
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-        [HttpGet("Brokers")]
-        //[Authorize]
-        public IActionResult Brokers()
-        {
-            IEnumerable<IdentityUser> broker = brokerRepository.GetAll();
-            string jsonData = JsonConvert.SerializeObject(broker);
-            return Content(jsonData, "application/json");
-        }
         [HttpGet("{email}")]
         //[Authorize]
         public IActionResult GetBrokerByEmail(string email)
         {
-            IdentityUser broker = brokerRepository.GetBrokerByEmail(email);
+            Broker broker = brokerRepository.GetBrokerByEmail(email);
             string jsonData = JsonConvert.SerializeObject(broker);
             return Content(jsonData, "application/json");
         }

@@ -15,10 +15,10 @@ namespace HermanTheBrokerAPI.Data
         {
             this.context = context;
         }
-        public IEnumerable<House> GetAll()
+        public IEnumerable<House> GetAllHouses()
         {
             var houses = context.House
-            //.Include(house => house.Broker)
+            .Include(house => house.Broker)
             .ToList();
             return houses;
         }
@@ -60,17 +60,16 @@ namespace HermanTheBrokerAPI.Data
             }
             return null;
         }
-        public House GetById(string id)
+        public IEnumerable<House> GetById(string id)
         {
-            var house = context.House.First(i => i.Id == id);
-            return house;
+            //return context.House
+            //    .FirstOrDefault(i => i.Id == id);
+            var res = context.House
+                .Include(broker => broker.Broker)
+                .Where(idd => idd.Id == id)
+                .ToList();
+            return res;
         }
-        //public async Task<IActionResult> NewHouse(House house)
-        //{
-        //    context.House.Add(house);
-        //    await context.SaveChangesAsync();
-        //    return null;
-        //}
         public void NewHouse(House house)
         {
             context.Entry(house).State = EntityState.Modified;
@@ -81,8 +80,6 @@ namespace HermanTheBrokerAPI.Data
         }
         public async Task<IActionResult> EditHouse(House house)
         {
-            //context.Entry(house).State = EntityState.Modified;
-            //bool hasChanges = context.ChangeTracker.HasChanges();
             context.Entry(house).State = EntityState.Modified;
             try
             {

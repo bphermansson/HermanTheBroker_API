@@ -19,7 +19,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddDbContext<HermanTheBrokerAPIContext>(options => options.UseSqlServer
 ("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = HermanTheBroker_API; Integrated Security = True; Connect Timeout = 30; Encrypt = False; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False"));
 builder.Services.AddTransient<IHouseRepository, HouseRepository>();
-//builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
+builder.Services.AddTransient<IBrokerRepository, BrokerRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

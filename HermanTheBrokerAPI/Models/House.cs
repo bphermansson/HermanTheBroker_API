@@ -29,7 +29,5 @@ namespace HermanTheBrokerAPI.Models
         public bool Error { get; set; }
         public string BrokerId { get; set; }
         public Broker Broker { get; set; }
-
-
     }
 }
