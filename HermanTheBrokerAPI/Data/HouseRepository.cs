@@ -62,8 +62,6 @@ namespace HermanTheBrokerAPI.Data
         }
         public House GetById(string id)
         {
-            //return context.House
-            //    .FirstOrDefault(i => i.Id == id);
             var res = context.House
                 .Include(broker => broker.Broker)
                 .Where(idd => idd.Id == id)
@@ -73,10 +71,9 @@ namespace HermanTheBrokerAPI.Data
         public void NewHouse(House house)
         {
             context.Entry(house).State = EntityState.Modified;
-            //bool hasChanges = context.ChangeTracker.HasChanges();
+            bool hasChanges = context.ChangeTracker.HasChanges();
             context.House.Add(house);
             context.SaveChanges();
-           // return null;
         }
         public async Task<ActionResult<bool>> EditHouse(House house)
         {

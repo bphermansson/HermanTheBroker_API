@@ -1,11 +1,7 @@
 ﻿using HermanTheBrokerAPI.Areas.Identity.Data;
 using HermanTheBrokerAPI.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using System;
 
 namespace HermanTheBrokerAPI.Data
 {
@@ -24,21 +20,12 @@ namespace HermanTheBrokerAPI.Data
         }
         public Broker GetBrokerByEmail(string email)
         {
-            // var firstStudentAgain = db.Student
-            // .Include(s => s.Grade)
-            // .OrderBy(b => b.Id)
-            // .First();
-            // Console.WriteLine("Student 1:" + firstStudentAgain.Name);
-            // id = "230b643b-4b52-43a3-931c-f9ca0e0a04f2";
-
             var broker = context.Users.First(i => i.Email == email);
-           // IEnumerable<IdentityUser> result = new List<IdentityUser>();
             return broker;
         }
         public async Task<IActionResult> EditBroker(Broker uid)
         {
             context.Entry(uid).State = EntityState.Modified;
-            //bool hasChanges = context.ChangeTracker.HasChanges();
             try
             {
                 context.SaveChanges();
@@ -49,6 +36,13 @@ namespace HermanTheBrokerAPI.Data
                 entry.OriginalValues.SetValues(entry.GetDatabaseValues());
             }
             return null;
+        }
+        public IEnumerable<House> GetHousesByBrokerEmail(string email)
+        {
+            return context.House
+             .Include(broker => broker.Broker)
+             .Where(s => s.BrokerEmail == email)
+             .ToList();
         }
 
         // This we dont need...

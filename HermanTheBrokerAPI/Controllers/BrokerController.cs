@@ -19,13 +19,34 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("{email}")]
-        //[Authorize]
-        public IActionResult GetBrokerByEmail(string email)
+                public IActionResult GetBrokerByEmail(string email)
         {
             Broker broker = brokerRepository.GetBrokerByEmail(email);
             string jsonData = JsonConvert.SerializeObject(broker);
             return Content(jsonData, "application/json");
         }
+        
+        [HttpGet("GetHousesByBrokerEmail")]
+        //[Authorize]
+        public IActionResult GetHousesByBrokerEmail(string email)
+        {
+            try
+            {
+                IEnumerable<House> brokersHouses = brokerRepository.GetHousesByBrokerEmail(email);
+                string jsonData = JsonConvert.SerializeObject(brokersHouses, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Content(jsonData, "application/json");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Couldnt get put to work...
+        // [HttpPut("EditBroker")]
         [HttpPost("EditBroker")]
         public ActionResult EditBroker(Broker uid)
         {
@@ -39,7 +60,8 @@ namespace HermanTheBrokerAPI.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost("RemoveBroker")]
+        // Not used
+        [HttpDelete("RemoveBroker")]
         public ActionResult RemoveBroker(Broker uid)
         {
             try

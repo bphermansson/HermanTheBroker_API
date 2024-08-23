@@ -51,16 +51,22 @@ namespace HermanTheBrokerAPI.Controllers
         //[Authorize]
         public IActionResult Houses()
         {
-            IEnumerable<Models.House> house = houseRepository.GetAllHouses();
-
-            string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings
+            try
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+                IEnumerable<Models.House> house = houseRepository.GetAllHouses();
 
-            //string jsonData = JsonConvert.SerializeObject(house);
-            return Content(jsonData, "application/json");
+                string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Content(jsonData, "application/json");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
+
         [HttpGet("HouseById")]
         public IActionResult GetHouseById(string id)
         {
