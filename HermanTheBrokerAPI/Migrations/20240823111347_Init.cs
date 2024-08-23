@@ -32,11 +32,12 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BrokerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -51,6 +52,7 @@ namespace HermanTheBrokerAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.UniqueConstraint("AK_AspNetUsers_Email", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,37 +176,37 @@ namespace HermanTheBrokerAPI.Migrations
                     Category = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Error = table.Column<bool>(type: "bit", nullable: false),
-                    BrokerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    BrokerEmail = table.Column<string>(type: "nvarchar(256)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_House", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_House_AspNetUsers_BrokerId",
-                        column: x => x.BrokerId,
+                        name: "FK_House_AspNetUsers_BrokerEmail",
+                        column: x => x.BrokerEmail,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "Email",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "BrokerEmail", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a23", 0, "e70a3556-9305-4df8-9835-f665661328b3", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "b7811e8c-40fe-4af0-9605-cdd17080f429", false, null },
-                    { "b58", 0, "89b7f971-2d05-417b-99e2-6cd27e06b447", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "48617225-2443-4582-a775-1da9ae8f437d", false, null }
+                    { "1a53d84a-a9f8-4ece-a93f-464361d4128e", 0, "", "83b10275-ae43-457b-bec4-770aa8be8e25", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "7bc6a173-5693-43ff-a8d5-184012a525d6", false, null },
+                    { "879ba02c-c18a-4280-9f3f-22f1e0817bef", 0, "", "fe723e08-6992-4ee5-962b-a27ac2496d02", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "80736eed-9204-4d8e-8160-cd228e8c0730", false, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "House",
-                columns: new[] { "Id", "Area", "BrokerId", "BuildYear", "Category", "City", "Error", "HouseId", "NoOfFloors", "NoOfRooms", "Status", "Street" },
+                columns: new[] { "Id", "Area", "BrokerEmail", "BuildYear", "Category", "City", "Error", "HouseId", "NoOfFloors", "NoOfRooms", "Status", "Street" },
                 values: new object[,]
                 {
-                    { "1", 200, "a23", 1984, 2, "Vänersborg", false, 1, 2, 7, null, "Storgatan" },
-                    { "2", 123, "a23", 1999, null, "Trollhättan", false, 2, 1, 4, null, "Drottninggatan" },
-                    { "3", 80, "b58", 1909, null, "Uddevalla", false, 3, 1, 2, null, "Kungsgatan" },
-                    { "4", 275, "b58", 2011, null, "Grästorp", false, 4, 3, 8, null, "Odinsgatan" }
+                    { "1", 200, "a@a.com", 1984, 2, "Vänersborg", false, 1, 2, 7, null, "Storgatan" },
+                    { "2", 123, "a@a.com", 1999, null, "Trollhättan", false, 2, 1, 4, null, "Drottninggatan" },
+                    { "3", 80, "c@a.com", 1909, null, "Uddevalla", false, 3, 1, 2, null, "Kungsgatan" },
+                    { "4", 275, "c@a.com", 2011, null, "Grästorp", false, 4, 3, 8, null, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -247,9 +249,9 @@ namespace HermanTheBrokerAPI.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_BrokerId",
+                name: "IX_House_BrokerEmail",
                 table: "House",
-                column: "BrokerId");
+                column: "BrokerEmail");
         }
 
         /// <inheritdoc />

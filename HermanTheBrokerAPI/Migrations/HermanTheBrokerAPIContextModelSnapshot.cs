@@ -30,11 +30,16 @@ namespace HermanTheBrokerAPI.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BrokerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -93,30 +98,32 @@ namespace HermanTheBrokerAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a23",
+                            Id = "1a53d84a-a9f8-4ece-a93f-464361d4128e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e70a3556-9305-4df8-9835-f665661328b3",
+                            BrokerEmail = "",
+                            ConcurrencyStamp = "83b10275-ae43-457b-bec4-770aa8be8e25",
                             Email = "c@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Dennis",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b7811e8c-40fe-4af0-9605-cdd17080f429",
+                            SecurityStamp = "7bc6a173-5693-43ff-a8d5-184012a525d6",
                             TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = "b58",
+                            Id = "879ba02c-c18a-4280-9f3f-22f1e0817bef",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "89b7f971-2d05-417b-99e2-6cd27e06b447",
+                            BrokerEmail = "",
+                            ConcurrencyStamp = "fe723e08-6992-4ee5-962b-a27ac2496d02",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "48617225-2443-4582-a775-1da9ae8f437d",
+                            SecurityStamp = "80736eed-9204-4d8e-8160-cd228e8c0730",
                             TwoFactorEnabled = false
                         });
                 });
@@ -129,9 +136,9 @@ namespace HermanTheBrokerAPI.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
-                    b.Property<string>("BrokerId")
+                    b.Property<string>("BrokerEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("BuildYear")
                         .HasColumnType("int");
@@ -164,7 +171,7 @@ namespace HermanTheBrokerAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrokerId");
+                    b.HasIndex("BrokerEmail");
 
                     b.ToTable("House");
 
@@ -173,7 +180,7 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "1",
                             Area = 200,
-                            BrokerId = "a23",
+                            BrokerEmail = "a@a.com",
                             BuildYear = 1984,
                             Category = 2,
                             City = "Vänersborg",
@@ -187,7 +194,7 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "2",
                             Area = 123,
-                            BrokerId = "a23",
+                            BrokerEmail = "a@a.com",
                             BuildYear = 1999,
                             City = "Trollhättan",
                             Error = false,
@@ -200,7 +207,7 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "3",
                             Area = 80,
-                            BrokerId = "b58",
+                            BrokerEmail = "c@a.com",
                             BuildYear = 1909,
                             City = "Uddevalla",
                             Error = false,
@@ -213,7 +220,7 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "4",
                             Area = 275,
-                            BrokerId = "b58",
+                            BrokerEmail = "c@a.com",
                             BuildYear = 2011,
                             City = "Grästorp",
                             Error = false,
@@ -361,7 +368,8 @@ namespace HermanTheBrokerAPI.Migrations
                 {
                     b.HasOne("HermanTheBrokerAPI.Models.Broker", "Broker")
                         .WithMany("Houses")
-                        .HasForeignKey("BrokerId")
+                        .HasForeignKey("BrokerEmail")
+                        .HasPrincipalKey("Email")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

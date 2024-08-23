@@ -22,14 +22,14 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<Broker>()
            .HasMany(e => e.Houses)
             .WithOne(e => e.Broker)
-            .HasForeignKey(e => e.BrokerId)
-            .HasPrincipalKey(e => e.Id);
+            .HasForeignKey(e => e.BrokerEmail)
+            .HasPrincipalKey(e => e.Email);
 
         builder.Entity<Broker>().HasData(
             new Broker
             {
                 Email = "c@a.com",
-                Id = "a23",
+                //Id = "a23",
                 Name = "Dennis"
             }
             );
@@ -37,7 +37,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
             new Broker
             {
                 Email = "a@a.com",
-                Id = "b58",
+                //Id = "b58",
                 Name = "James"
             }
             );
@@ -54,7 +54,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerId = "a23",
+                 BrokerEmail = "a@a.com",
              }
             );
         builder.Entity<House>().HasData(
@@ -68,7 +68,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 1999,
                 NoOfFloors = 1,
                 NoOfRooms = 4,
-                BrokerId = "a23"
+                BrokerEmail = "a@a.com"
             }
         );
         builder.Entity<House>().HasData(
@@ -82,7 +82,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 1909,
                 NoOfFloors = 1,
                 NoOfRooms = 2,
-                BrokerId = "b58"
+                BrokerEmail = "c@a.com"
             }
         );
         builder.Entity<House>().HasData(
@@ -96,7 +96,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 2011,
                 NoOfFloors = 3,
                 NoOfRooms = 8,
-                BrokerId = "b58"
+                BrokerEmail = "c@a.com"
             }
         );
     }

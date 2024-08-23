@@ -27,7 +27,7 @@ namespace HermanTheBrokerAPI.Models
         public Category? Category { get; set; }
         public string? Status { get; set; }
         public bool Error { get; set; }
-        public string BrokerId { get; set; }
+        public string BrokerEmail { get; set; }
         public Broker Broker { get; set; }
     }
 }
