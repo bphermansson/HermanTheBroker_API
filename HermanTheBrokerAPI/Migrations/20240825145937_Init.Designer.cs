@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HermanTheBrokerAPI.Migrations
 {
     [DbContext(typeof(HermanTheBrokerAPIContext))]
-    [Migration("20240823111347_Init")]
+    [Migration("20240825145937_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -32,10 +32,6 @@ namespace HermanTheBrokerAPI.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
-
-                    b.Property<string>("BrokerEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -101,32 +97,30 @@ namespace HermanTheBrokerAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1a53d84a-a9f8-4ece-a93f-464361d4128e",
+                            Id = "c07f99ca-3bcb-45a0-8c1a-a7c6e0b35414",
                             AccessFailedCount = 0,
-                            BrokerEmail = "",
-                            ConcurrencyStamp = "83b10275-ae43-457b-bec4-770aa8be8e25",
+                            ConcurrencyStamp = "e82827ad-3cbd-4260-91e2-ba39b417a282",
                             Email = "c@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Dennis",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7bc6a173-5693-43ff-a8d5-184012a525d6",
+                            SecurityStamp = "02a0a7e9-b65a-4f13-8eca-271a5ea1fe85",
                             TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = "879ba02c-c18a-4280-9f3f-22f1e0817bef",
+                            Id = "694777f9-3bf2-47f8-a959-b33107d2182e",
                             AccessFailedCount = 0,
-                            BrokerEmail = "",
-                            ConcurrencyStamp = "fe723e08-6992-4ee5-962b-a27ac2496d02",
+                            ConcurrencyStamp = "70673c25-77f3-4c40-9ab4-961dca51e400",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "80736eed-9204-4d8e-8160-cd228e8c0730",
+                            SecurityStamp = "096be034-9c1f-429b-8ee0-4037ce76b351",
                             TwoFactorEnabled = false
                         });
                 });

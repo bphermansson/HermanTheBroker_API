@@ -32,7 +32,6 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BrokerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -191,11 +190,11 @@ namespace HermanTheBrokerAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "BrokerEmail", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1a53d84a-a9f8-4ece-a93f-464361d4128e", 0, "", "83b10275-ae43-457b-bec4-770aa8be8e25", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "7bc6a173-5693-43ff-a8d5-184012a525d6", false, null },
-                    { "879ba02c-c18a-4280-9f3f-22f1e0817bef", 0, "", "fe723e08-6992-4ee5-962b-a27ac2496d02", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "80736eed-9204-4d8e-8160-cd228e8c0730", false, null }
+                    { "694777f9-3bf2-47f8-a959-b33107d2182e", 0, "70673c25-77f3-4c40-9ab4-961dca51e400", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "096be034-9c1f-429b-8ee0-4037ce76b351", false, null },
+                    { "c07f99ca-3bcb-45a0-8c1a-a7c6e0b35414", 0, "e82827ad-3cbd-4260-91e2-ba39b417a282", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "02a0a7e9-b65a-4f13-8eca-271a5ea1fe85", false, null }
                 });
 
             migrationBuilder.InsertData(
