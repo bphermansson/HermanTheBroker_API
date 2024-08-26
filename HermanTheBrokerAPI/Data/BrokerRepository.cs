@@ -37,11 +37,11 @@ namespace HermanTheBrokerAPI.Data
             }
             return null;
         }
-        public IEnumerable<House> GetHousesByBrokerEmail(string email)
+        public IEnumerable<House> GetHousesByBrokerId(string id)
         {
             return context.House
              .Include(broker => broker.Broker)
-             .Where(s => s.BrokerEmail == email)
+             .Where(s => s.HouseId == id)
              .ToList();
         }
 

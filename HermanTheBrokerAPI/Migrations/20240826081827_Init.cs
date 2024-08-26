@@ -36,7 +36,7 @@ namespace HermanTheBrokerAPI.Migrations
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -51,7 +51,6 @@ namespace HermanTheBrokerAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.UniqueConstraint("AK_AspNetUsers_Email", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,8 +163,7 @@ namespace HermanTheBrokerAPI.Migrations
                 name: "House",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    HouseId = table.Column<int>(type: "int", nullable: false),
+                    HouseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<int>(type: "int", nullable: false),
@@ -175,16 +173,16 @@ namespace HermanTheBrokerAPI.Migrations
                     Category = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Error = table.Column<bool>(type: "bit", nullable: false),
-                    BrokerEmail = table.Column<string>(type: "nvarchar(256)", nullable: false)
+                    BrokerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_House", x => x.Id);
+                    table.PrimaryKey("PK_House", x => x.HouseId);
                     table.ForeignKey(
-                        name: "FK_House_AspNetUsers_BrokerEmail",
-                        column: x => x.BrokerEmail,
+                        name: "FK_House_AspNetUsers_BrokerId",
+                        column: x => x.BrokerId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Email",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -193,19 +191,19 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "694777f9-3bf2-47f8-a959-b33107d2182e", 0, "70673c25-77f3-4c40-9ab4-961dca51e400", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "096be034-9c1f-429b-8ee0-4037ce76b351", false, null },
-                    { "c07f99ca-3bcb-45a0-8c1a-a7c6e0b35414", 0, "e82827ad-3cbd-4260-91e2-ba39b417a282", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "02a0a7e9-b65a-4f13-8eca-271a5ea1fe85", false, null }
+                    { "a23", 0, "4a0eb23e-5c84-491b-8dc2-8db1c02a90ac", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "16452897-f7dd-4e82-ac94-26551bb64f5e", false, null },
+                    { "b58", 0, "11fb62ea-58b7-48fa-bd62-79bda0cb188d", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "e88f08d6-9f5c-4853-9920-92d004edda9a", false, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "House",
-                columns: new[] { "Id", "Area", "BrokerEmail", "BuildYear", "Category", "City", "Error", "HouseId", "NoOfFloors", "NoOfRooms", "Status", "Street" },
+                columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "Error", "NoOfFloors", "NoOfRooms", "Status", "Street" },
                 values: new object[,]
                 {
-                    { "1", 200, "a@a.com", 1984, 2, "Vänersborg", false, 1, 2, 7, null, "Storgatan" },
-                    { "2", 123, "a@a.com", 1999, null, "Trollhättan", false, 2, 1, 4, null, "Drottninggatan" },
-                    { "3", 80, "c@a.com", 1909, null, "Uddevalla", false, 3, 1, 2, null, "Kungsgatan" },
-                    { "4", 275, "c@a.com", 2011, null, "Grästorp", false, 4, 3, 8, null, "Odinsgatan" }
+                    { "1", 200, "b58", 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" },
+                    { "2", 123, "b58", 1999, null, "Trollhättan", false, 1, 4, null, "Drottninggatan" },
+                    { "3", 80, "a23", 1909, null, "Uddevalla", false, 1, 2, null, "Kungsgatan" },
+                    { "4", 275, "a23", 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -248,9 +246,9 @@ namespace HermanTheBrokerAPI.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_House_BrokerEmail",
+                name: "IX_House_BrokerId",
                 table: "House",
-                column: "BrokerEmail");
+                column: "BrokerId");
         }
 
         /// <inheritdoc />

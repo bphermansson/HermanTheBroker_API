@@ -22,14 +22,14 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<Broker>()
            .HasMany(e => e.Houses)
             .WithOne(e => e.Broker)
-            .HasForeignKey(e => e.BrokerEmail)
-            .HasPrincipalKey(e => e.Email);
+            .HasForeignKey(e => e.BrokerId) // Key in the other table
+            .HasPrincipalKey(e => e.Id); // Key in this table
 
         builder.Entity<Broker>().HasData(
             new Broker
             {
                 Email = "c@a.com",
-                //Id = "a23",
+                Id = "a23",
                 Name = "Dennis"
             }
             );
@@ -37,7 +37,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
             new Broker
             {
                 Email = "a@a.com",
-                //Id = "b58",
+                Id = "b58",
                 Name = "James"
             }
             );
@@ -45,8 +45,8 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<House>().HasData(
              new House
              {
-                 Id = "1",
-                 HouseId = 1,
+                 //Id = "1",
+                 HouseId = "1",
                  Street = "Storgatan",
                  City = "Vänersborg",
                  Area = 200,
@@ -54,49 +54,46 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerEmail = "a@a.com",
+                 BrokerId = "b58"
              }
             );
         builder.Entity<House>().HasData(
             new House
             {
-                Id = "2",
-                HouseId = 2,
+                HouseId = "2",
                 Street = "Drottninggatan",
                 City = "Trollhättan",
                 Area = 123,
                 BuildYear = 1999,
                 NoOfFloors = 1,
                 NoOfRooms = 4,
-                BrokerEmail = "a@a.com"
+                BrokerId = "b58"
             }
         );
         builder.Entity<House>().HasData(
             new House
             {
-                Id = "3",
-                HouseId = 3,
+                HouseId = "3",
                 Street = "Kungsgatan",
                 City = "Uddevalla",
                 Area = 80,
                 BuildYear = 1909,
                 NoOfFloors = 1,
                 NoOfRooms = 2,
-                BrokerEmail = "c@a.com"
+                BrokerId = "a23"
             }
         );
         builder.Entity<House>().HasData(
             new House
             {
-                Id = "4",
-                HouseId = 4,
+                HouseId = "4",
                 Street = "Odinsgatan",
                 City = "Grästorp",
                 Area = 275,
                 BuildYear = 2011,
                 NoOfFloors = 3,
                 NoOfRooms = 8,
-                BrokerEmail = "c@a.com"
+                BrokerId = "a23"
             }
         );
     }

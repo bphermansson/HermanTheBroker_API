@@ -26,13 +26,13 @@ namespace HermanTheBrokerAPI.Controllers
             return Content(jsonData, "application/json");
         }
         
-        [HttpGet("GetHousesByBrokerEmail")]
+        [HttpGet("GetHousesByBrokerId")]
         //[Authorize]
-        public IActionResult GetHousesByBrokerEmail(string email)
+        public IActionResult GetHousesByBrokerId(string id)
         {
             try
             {
-                IEnumerable<House> brokersHouses = brokerRepository.GetHousesByBrokerEmail(email);
+                IEnumerable<House> brokersHouses = brokerRepository.GetHousesByBrokerId(id);
                 string jsonData = JsonConvert.SerializeObject(brokersHouses, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
