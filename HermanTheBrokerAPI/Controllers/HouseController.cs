@@ -53,7 +53,7 @@ namespace HermanTheBrokerAPI.Controllers
         {
             try
             {
-                IEnumerable<Models.House> house = houseRepository.GetAllHouses();
+                IEnumerable<House> house = houseRepository.GetAllHouses();
 
                 string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings
                 {
@@ -68,7 +68,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("HouseById")]
-        public IActionResult GetHouseById(string id)
+        public IActionResult GetHouseById(int id)
         {
             House house = houseRepository.GetById(id);
             string jsonData = JsonConvert.SerializeObject(house, Formatting.Indented, new JsonSerializerSettings

@@ -60,7 +60,7 @@ namespace HermanTheBrokerAPI.Data
             }
             return null;
         }
-        public House GetById(string id)
+        public House GetById(int id)
         {
             var res = context.House
                 .Include(broker => broker.Broker)

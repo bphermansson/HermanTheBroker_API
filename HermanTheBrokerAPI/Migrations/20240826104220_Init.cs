@@ -163,7 +163,8 @@ namespace HermanTheBrokerAPI.Migrations
                 name: "House",
                 columns: table => new
                 {
-                    HouseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    HouseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<int>(type: "int", nullable: false),
@@ -191,8 +192,8 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a23", 0, "4a0eb23e-5c84-491b-8dc2-8db1c02a90ac", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "16452897-f7dd-4e82-ac94-26551bb64f5e", false, null },
-                    { "b58", 0, "11fb62ea-58b7-48fa-bd62-79bda0cb188d", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "e88f08d6-9f5c-4853-9920-92d004edda9a", false, null }
+                    { "a23", 0, "9f7cc2b7-5501-4294-aaca-a6ef595da50d", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "5ded2faa-4a58-43be-9d09-0e2e0a50e181", false, null },
+                    { "b58", 0, "837daae2-4d84-458e-9c8c-7aa89a422689", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "beb22c70-944c-4355-a64c-a1d944832ca9", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -200,10 +201,10 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "Error", "NoOfFloors", "NoOfRooms", "Status", "Street" },
                 values: new object[,]
                 {
-                    { "1", 200, "b58", 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" },
-                    { "2", 123, "b58", 1999, null, "Trollhättan", false, 1, 4, null, "Drottninggatan" },
-                    { "3", 80, "a23", 1909, null, "Uddevalla", false, 1, 2, null, "Kungsgatan" },
-                    { "4", 275, "a23", 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" }
+                    { 1, 200, "b58", 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" },
+                    { 2, 123, "b58", 1999, null, "Trollhättan", false, 1, 4, null, "Drottninggatan" },
+                    { 3, 80, "a23", 1909, null, "Uddevalla", false, 1, 2, null, "Kungsgatan" },
+                    { 4, 275, "a23", 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(

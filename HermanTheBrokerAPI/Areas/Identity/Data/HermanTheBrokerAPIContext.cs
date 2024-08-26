@@ -46,7 +46,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
              new House
              {
                  //Id = "1",
-                 HouseId = "1",
+                 HouseId = 1,
                  Street = "Storgatan",
                  City = "Vänersborg",
                  Area = 200,
@@ -60,7 +60,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<House>().HasData(
             new House
             {
-                HouseId = "2",
+                HouseId = 2,
                 Street = "Drottninggatan",
                 City = "Trollhättan",
                 Area = 123,
@@ -73,7 +73,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<House>().HasData(
             new House
             {
-                HouseId = "3",
+                HouseId = 3,
                 Street = "Kungsgatan",
                 City = "Uddevalla",
                 Area = 80,
@@ -86,7 +86,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<House>().HasData(
             new House
             {
-                HouseId = "4",
+                HouseId = 4,
                 Street = "Odinsgatan",
                 City = "Grästorp",
                 Area = 275,

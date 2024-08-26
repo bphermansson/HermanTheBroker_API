@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HermanTheBrokerAPI.Migrations
 {
     [DbContext(typeof(HermanTheBrokerAPIContext))]
-    [Migration("20240826081827_Init")]
+    [Migration("20240826104220_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -98,36 +98,39 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "a23",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a0eb23e-5c84-491b-8dc2-8db1c02a90ac",
+                            ConcurrencyStamp = "9f7cc2b7-5501-4294-aaca-a6ef595da50d",
                             Email = "c@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Dennis",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "16452897-f7dd-4e82-ac94-26551bb64f5e",
+                            SecurityStamp = "5ded2faa-4a58-43be-9d09-0e2e0a50e181",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "b58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "11fb62ea-58b7-48fa-bd62-79bda0cb188d",
+                            ConcurrencyStamp = "837daae2-4d84-458e-9c8c-7aa89a422689",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e88f08d6-9f5c-4853-9920-92d004edda9a",
+                            SecurityStamp = "beb22c70-944c-4355-a64c-a1d944832ca9",
                             TwoFactorEnabled = false
                         });
                 });
 
             modelBuilder.Entity("HermanTheBrokerAPI.Models.House", b =>
                 {
-                    b.Property<string>("HouseId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("HouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseId"));
 
                     b.Property<int>("Area")
                         .HasColumnType("int");
@@ -171,7 +174,7 @@ namespace HermanTheBrokerAPI.Migrations
                     b.HasData(
                         new
                         {
-                            HouseId = "1",
+                            HouseId = 1,
                             Area = 200,
                             BrokerId = "b58",
                             BuildYear = 1984,
@@ -184,7 +187,7 @@ namespace HermanTheBrokerAPI.Migrations
                         },
                         new
                         {
-                            HouseId = "2",
+                            HouseId = 2,
                             Area = 123,
                             BrokerId = "b58",
                             BuildYear = 1999,
@@ -196,7 +199,7 @@ namespace HermanTheBrokerAPI.Migrations
                         },
                         new
                         {
-                            HouseId = "3",
+                            HouseId = 3,
                             Area = 80,
                             BrokerId = "a23",
                             BuildYear = 1909,
@@ -208,7 +211,7 @@ namespace HermanTheBrokerAPI.Migrations
                         },
                         new
                         {
-                            HouseId = "4",
+                            HouseId = 4,
                             Area = 275,
                             BrokerId = "a23",
                             BuildYear = 2011,

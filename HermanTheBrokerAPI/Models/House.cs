@@ -17,7 +17,7 @@ namespace HermanTheBrokerAPI.Models
     public class House
 	{
         //public string Id { get; set; }
-        public string HouseId { get; set; }
+        public int HouseId { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public int Area { get; set; }

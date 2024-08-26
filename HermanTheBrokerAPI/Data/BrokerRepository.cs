@@ -41,7 +41,7 @@ namespace HermanTheBrokerAPI.Data
         {
             return context.House
              .Include(broker => broker.Broker)
-             .Where(s => s.HouseId == id)
+             .Where(s => s.BrokerId == id)
              .ToList();
         }
 
