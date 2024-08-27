@@ -21,18 +21,21 @@ namespace HermanTheBrokerAPI.Controllers
         [HttpGet("{email}")]
                 public IActionResult GetBrokerByEmail(string email)
         {
-            Broker broker = brokerRepository.GetBrokerByEmail(email);
-            string jsonData = JsonConvert.SerializeObject(broker);
+            IEnumerable<Broker> broker = brokerRepository.GetBrokerByEmail(email);
+            string jsonData = JsonConvert.SerializeObject(broker, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
             return Content(jsonData, "application/json");
         }
         
-        [HttpGet("GetHousesByBrokerId")]
+        [HttpGet("GetHousesByBrokerEmail")]
         //[Authorize]
-        public IActionResult GetHousesByBrokerId(string id)
+        public IActionResult GetHousesByBrokerEmail(string brokerEmail)
         {
             try
             {
-                IEnumerable<House> brokersHouses = brokerRepository.GetHousesByBrokerId(id);
+                IEnumerable<House> brokersHouses = brokerRepository.GetHousesByBrokerEmail(brokerEmail);
                 string jsonData = JsonConvert.SerializeObject(brokersHouses, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore

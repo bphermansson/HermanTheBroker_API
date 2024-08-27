@@ -12,10 +12,10 @@ namespace HermanTheBrokerAPI.Data
     public interface IBrokerRepository
     {
         public IEnumerable<Broker> GetAll();
-        public Broker GetBrokerByEmail(string email);
-        public Task<IActionResult> EditBroker(Broker uid);
+        public IEnumerable<Broker> GetBrokerByEmail(string brokerEmail);
+        Task<ActionResult<bool>> EditBroker(Broker uid);
         public Task<bool> RemoveBroker(Broker uid);
-        public IEnumerable<House> GetHousesByBrokerId(string id);
+        public IEnumerable<House> GetHousesByBrokerEmail(string brokerEmail);
 
     }
 }

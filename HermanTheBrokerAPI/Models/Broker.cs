@@ -11,9 +11,6 @@ namespace HermanTheBrokerAPI.Models
 {
 	public class Broker : IdentityUser
 	{
-		//public string BrokerEmail { get; set; } = string.Empty;
-		//public string Id { get; set; } = string.Empty;
-
 		public string Name { get; set; } = string.Empty;
 		public long PhoneNumber { get; set; }
 		public ICollection<House> Houses { get; set; }

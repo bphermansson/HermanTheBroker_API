@@ -18,30 +18,37 @@ namespace HermanTheBrokerAPI.Data
 
             return users;
         }
-        public Broker GetBrokerByEmail(string email)
+        public IEnumerable<Broker> GetBrokerByEmail(string brokerEmail)
         {
-            var broker = context.Users.First(i => i.Email == email);
-            return broker;
+            //var broker = context.Users
+            //    .First(i => i.Email == email);
+            //return broker;
+
+            return context.Broker
+                .Include(broker => broker.Houses)
+                .Where(broker => broker.Email == brokerEmail)
+                .ToList();
         }
-        public async Task<IActionResult> EditBroker(Broker uid)
+        public async Task<ActionResult<bool>> EditBroker(Broker uid)
         {
             context.Entry(uid).State = EntityState.Modified;
             try
             {
                 context.SaveChanges();
+                return true;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                var entry = ex.Entries.Single();
-                entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                return false;
+
             }
-            return null;
         }
-        public IEnumerable<House> GetHousesByBrokerId(string id)
+        public IEnumerable<House> GetHousesByBrokerEmail(string brokerEmail)
         {
             return context.House
              .Include(broker => broker.Broker)
-             .Where(s => s.BrokerId == id)
+             .Include(house => house.Broker)
+             .Where(s => s.Broker.Email == brokerEmail)
              .ToList();
         }
 
