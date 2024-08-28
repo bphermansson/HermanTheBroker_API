@@ -45,7 +45,6 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<House>().HasData(
              new House
              {
-                 //Id = "1",
                  HouseId = 1,
                  Street = "Storgatan",
                  City = "Vänersborg",

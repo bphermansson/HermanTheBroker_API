@@ -3,6 +3,7 @@ using HermanTheBrokerAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HermanTheBrokerAPI.Controllers
 {
@@ -18,17 +19,44 @@ namespace HermanTheBrokerAPI.Controllers
             this.brokerRepository = brokerRepository;
         }
 
-        [HttpGet("{email}")]
-                public IActionResult GetBrokerByEmail(string email)
+        [HttpGet("GetAllBrokers")]
+        [Authorize]
+        public IActionResult GetAllBrokers()
         {
-            IEnumerable<Broker> broker = brokerRepository.GetBrokerByEmail(email);
-            string jsonData = JsonConvert.SerializeObject(broker, Formatting.Indented, new JsonSerializerSettings
+            try
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            return Content(jsonData, "application/json");
+                IEnumerable<Broker> brokers = brokerRepository.GetAllBrokers();
+                string jsonData = JsonConvert.SerializeObject(brokers, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Content(jsonData, "application/json");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
+        [HttpGet("GetBrokerByEmail")]
+        [Authorize]
+        public IActionResult GetBrokerByEmail(string brokerEmail)
+        {
+            try
+            {
+                IEnumerable<Broker> brokers = brokerRepository.GetBrokerByEmail(brokerEmail);
+                string jsonData = JsonConvert.SerializeObject(brokers, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Content(jsonData, "application/json");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("GetHousesByBrokerEmail")]
         //[Authorize]
         public IActionResult GetHousesByBrokerEmail(string brokerEmail)

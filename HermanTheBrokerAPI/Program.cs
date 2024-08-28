@@ -41,9 +41,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseAuthorization();
 }
-
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseExceptionHandler();
 app.UseStatusCodePages();

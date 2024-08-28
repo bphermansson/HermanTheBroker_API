@@ -12,18 +12,14 @@ namespace HermanTheBrokerAPI.Data
         {
             this.context = context;
         }
-        public IEnumerable<Broker> GetAll()
+        public IEnumerable<Broker> GetAllBrokers()
         {
-            IEnumerable<Broker> users = context.Users.ToList();
+            IEnumerable<Broker> brokers = context.Broker.ToList();
 
-            return users;
+            return brokers;
         }
         public IEnumerable<Broker> GetBrokerByEmail(string brokerEmail)
         {
-            //var broker = context.Users
-            //    .First(i => i.Email == email);
-            //return broker;
-
             return context.Broker
                 .Include(broker => broker.Houses)
                 .Where(broker => broker.Email == brokerEmail)

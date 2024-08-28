@@ -1,6 +1,4 @@
-﻿using HermanTheBrokerAPI.Models;
-
-namespace HermanTheBrokerAPI.Classes
+﻿namespace HermanTheBrokerAPI.Classes
 {
     public class Searchobject
     {

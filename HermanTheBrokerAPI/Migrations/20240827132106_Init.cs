@@ -192,8 +192,8 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a23", 0, "9f7cc2b7-5501-4294-aaca-a6ef595da50d", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "5ded2faa-4a58-43be-9d09-0e2e0a50e181", false, null },
-                    { "b58", 0, "837daae2-4d84-458e-9c8c-7aa89a422689", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "beb22c70-944c-4355-a64c-a1d944832ca9", false, null }
+                    { "a23", 0, "267323dd-ab0d-4956-8d0d-9113df1792cf", "c@a.com", false, false, null, "Dennis", null, null, null, 0L, false, "b188d156-1c3d-43a9-b223-3d07280ef68b", false, null },
+                    { "b58", 0, "c43770c5-5d68-4826-8d3a-7b70d7291cfb", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "eaf043e4-bfeb-4b28-87ab-13fbda563ee5", false, null }
                 });
 
             migrationBuilder.InsertData(
