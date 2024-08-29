@@ -105,12 +105,12 @@ namespace HermanTheBrokerAPI.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete("RemoveHouse")]
-        public ActionResult RemoveHouse(House house)
+        [HttpDelete("RemoveHouse/{id:int}")]
+        public ActionResult RemoveHouse(int id)
         {
             try
             {
-                houseRepository.RemoveHouse(house);
+                houseRepository.RemoveHouse(id);
                 return Ok();
             }
             catch (Exception ex)

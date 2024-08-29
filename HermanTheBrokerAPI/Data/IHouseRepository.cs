@@ -16,7 +16,6 @@ namespace HermanTheBrokerAPI.Data
         public House GetById(int id);
         void NewHouse(House house);
         Task<ActionResult<bool>> EditHouse(House house);
-        Task<IActionResult> RemoveHouse(House house);
-
+        public Task<ActionResult<bool>> RemoveHouse(int id);
     }
 }

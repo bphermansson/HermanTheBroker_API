@@ -85,15 +85,24 @@ namespace HermanTheBrokerAPI.Data
             }
             catch (DbUpdateConcurrencyException)
             {
-                //throw;
                 return false;
             }
         }
-        public async Task<IActionResult> RemoveHouse(House house)
+        public async Task<ActionResult<bool>> RemoveHouse(int id)
         {
-            context.House.Remove(house);
+            House houseToRemove = GetById(id);
+            context.House.Remove(houseToRemove);
             context.SaveChanges();
-            return null;
+            try
+            {
+                context.House.Remove(houseToRemove);
+                context.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return false;
+            }
         }
     }
 }

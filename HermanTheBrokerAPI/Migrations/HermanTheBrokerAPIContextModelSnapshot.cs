@@ -95,28 +95,28 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "a23",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "267323dd-ab0d-4956-8d0d-9113df1792cf",
+                            ConcurrencyStamp = "c935605b-88ff-4c58-b83a-9dd122a10142",
                             Email = "c@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Dennis",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b188d156-1c3d-43a9-b223-3d07280ef68b",
+                            SecurityStamp = "6d9d85ae-a45e-4abd-a1bd-d6f484271f7f",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "b58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c43770c5-5d68-4826-8d3a-7b70d7291cfb",
+                            ConcurrencyStamp = "e29cf37a-7ff6-407f-8b32-f9cd224eb558",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eaf043e4-bfeb-4b28-87ab-13fbda563ee5",
+                            SecurityStamp = "d3223fc6-6170-4d0b-8f93-8af29716da69",
                             TwoFactorEnabled = false
                         });
                 });
