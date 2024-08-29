@@ -2,8 +2,6 @@
 using HermanTheBrokerAPI.Classes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata;
-using System.Xml;
 using HermanTheBrokerAPI.Areas.Identity.Data;
 
 namespace HermanTheBrokerAPI.Data

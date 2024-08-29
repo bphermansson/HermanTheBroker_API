@@ -3,7 +3,7 @@ using HermanTheBrokerAPI.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using HermanTheBrokerAPI.Models;
-using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HermanTheBrokerAPI.Controllers
 {
@@ -48,7 +48,6 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("Houses")]
-        //[Authorize]
         public IActionResult Houses()
         {
             try
@@ -79,6 +78,7 @@ namespace HermanTheBrokerAPI.Controllers
             return Content(jsonData, "application/json");
         }
         [HttpPost("NewHouse")]
+        [Authorize]
         public ActionResult NewHouse(House house)
         {
             try
@@ -93,6 +93,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
         // A HttpPut would be better but doesnt work for some reason. 
         [HttpPost("EditHouse")]
+        [Authorize]
         public ActionResult EditHouse(House house)
         {
             try
@@ -106,6 +107,7 @@ namespace HermanTheBrokerAPI.Controllers
             }
         }
         [HttpDelete("RemoveHouse/{id:int}")]
+        [Authorize]
         public ActionResult RemoveHouse(int id)
         {
             try

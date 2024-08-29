@@ -58,7 +58,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
 
         [HttpGet("GetHousesByBrokerEmail")]
-        //[Authorize]
+        [Authorize]
         public IActionResult GetHousesByBrokerEmail(string brokerEmail)
         {
             try
@@ -79,6 +79,7 @@ namespace HermanTheBrokerAPI.Controllers
         // Couldnt get put to work...
         // [HttpPut("EditBroker")]
         [HttpPost("EditBroker")]
+        [Authorize]
         public ActionResult EditBroker(Broker uid)
         {
             try
@@ -93,6 +94,7 @@ namespace HermanTheBrokerAPI.Controllers
         }
         // Not used
         [HttpDelete("RemoveBroker")]
+        [Authorize]
         public ActionResult RemoveBroker(Broker uid)
         {
             try

@@ -16,6 +16,5 @@ namespace HermanTheBrokerAPI.Data
         Task<ActionResult<bool>> EditBroker(Broker uid);
         public Task<bool> RemoveBroker(Broker uid);
         public IEnumerable<House> GetHousesByBrokerEmail(string brokerEmail);
-
     }
 }

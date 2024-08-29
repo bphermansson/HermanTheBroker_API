@@ -1,10 +1,6 @@
 using HermanTheBrokerAPI.Data;
 using HermanTheBrokerAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using HermanTheBrokerAPI;
-using System.Security.Claims;
-using Microsoft.AspNetCore.HttpLogging;
 using Nist.Errors;
 using System.Net;
 using HermanTheBrokerAPI.Areas.Identity.Data;
