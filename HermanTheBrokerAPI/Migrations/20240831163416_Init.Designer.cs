@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HermanTheBrokerAPI.Migrations
 {
     [DbContext(typeof(HermanTheBrokerAPIContext))]
-    [Migration("20240830175543_Init")]
+    [Migration("20240831163416_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -116,14 +116,14 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "b58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0aff6ad2-bf2a-45b3-8f10-e9fe46aa89f2",
+                            ConcurrencyStamp = "9f88ad77-232d-4959-a5a5-931b01ddb794",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ea83d1ea-d459-4f19-b16a-f8226c0aedd9",
+                            SecurityStamp = "f052751b-b03b-440a-9ab7-152bed92d07f",
                             TwoFactorEnabled = false
                         });
                 });
@@ -179,6 +179,7 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 1,
                             Area = 200,
+                            BrokerId = "6dbbc953-5718-404f-b6c4-00b2341a7051",
                             BuildYear = 1984,
                             Category = 2,
                             City = "Vänersborg",

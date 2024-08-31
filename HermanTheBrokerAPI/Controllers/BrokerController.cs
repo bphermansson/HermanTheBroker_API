@@ -20,22 +20,23 @@ namespace HermanTheBrokerAPI.Controllers
             _userManager = userManager;
         }
         private readonly UserManager<Broker> _userManager;
-        
-        // Function to create the first user. 
-        //[HttpGet("GetPasswordHash")]
-        //public IActionResult GetPasswordHash()
-        //{
-        //    var user = _userManager.FindByNameAsync(User.Identity.Name);
-        //    var b = new Broker()
-        //    {
-        //        Name = "Göran",
-        //        UserName = "admin@hermanthebroker.se",
-        //        Email = "admin@hermanthebroker.se",
-        //    };
-        //    var PasswordHash = _userManager.PasswordHasher.HashPassword(b, "asdf1234_K");
 
-        //    return Content(PasswordHash);
-        //}
+        // Function to create the first user. 
+        [HttpGet("GetPasswordHash")]
+        public IActionResult GetPasswordHash()
+        {
+            //var user = _userManager.FindByNameAsync(User.Identity.Name);
+            var b = new Broker()
+            {
+                Name = "Göran",
+                UserName = "admin@hermanthebroker.se",
+                Email = "admin@hermanthebroker.se",
+                NormalizedUserName = "admin@hermanthebroker.se"
+            };
+            var PasswordHash = _userManager.PasswordHasher.HashPassword(b, "asdf1234_K");
+
+            return Content(PasswordHash);
+        }
 
         [HttpGet("GetAllBrokers")]
         [Authorize]

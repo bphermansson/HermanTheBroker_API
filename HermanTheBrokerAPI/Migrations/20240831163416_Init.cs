@@ -192,7 +192,7 @@ namespace HermanTheBrokerAPI.Migrations
                 values: new object[,]
                 {
                     { "6dbbc953-5718-404f-b6c4-00b2341a7051", 0, "241e7992-c1bd-4a3a-911a-c700caadb262", "admin@hermanthebroker.se", false, true, null, "Göran", "ADMIN@HERMANTHEBROKER.COM", "ADMIN@HERMANTHEBROKER.COM", "AQAAAAIAAYagAAAAEFx5utr9Pi8EeehOpXq9kjeme5/5JPS0EzDdcsaQ4r6laZ1pW+M2DgSfw4HiUxYQbQ==", 0L, false, "KSOKRWVRJPN7H4B7AKRRAHX4JME3GZNL", false, "admin@hermanthebroker.se" },
-                    { "b58", 0, "0aff6ad2-bf2a-45b3-8f10-e9fe46aa89f2", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "ea83d1ea-d459-4f19-b16a-f8226c0aedd9", false, null }
+                    { "b58", 0, "9f88ad77-232d-4959-a5a5-931b01ddb794", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "f052751b-b03b-440a-9ab7-152bed92d07f", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -200,10 +200,10 @@ namespace HermanTheBrokerAPI.Migrations
                 columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "Error", "NoOfFloors", "NoOfRooms", "Status", "Street" },
                 values: new object[,]
                 {
-                    { 1, 200, null, 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" },
                     { 2, 123, null, 1999, null, "Trollhättan", false, 1, 4, null, "Drottninggatan" },
                     { 3, 80, null, 1909, null, "Uddevalla", false, 1, 2, null, "Kungsgatan" },
-                    { 4, 275, null, 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" }
+                    { 4, 275, null, 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" },
+                    { 1, 200, "6dbbc953-5718-404f-b6c4-00b2341a7051", 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" }
                 });
 
             migrationBuilder.CreateIndex(
