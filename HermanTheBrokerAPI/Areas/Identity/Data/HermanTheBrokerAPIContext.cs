@@ -28,9 +28,17 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<Broker>().HasData(
             new Broker
             {
-                Email = "c@a.com",
-                Id = "a23",
-                Name = "Dennis"
+                // Password asdf1234_K
+                Id = "6dbbc953-5718-404f-b6c4-00b2341a7051",
+                Name = "Göran",
+                UserName = "admin@hermanthebroker.se",
+                NormalizedUserName = "ADMIN@HERMANTHEBROKER.COM",
+                Email = "admin@hermanthebroker.se",
+                NormalizedEmail = "ADMIN@HERMANTHEBROKER.COM",
+                PasswordHash = "AQAAAAIAAYagAAAAEFx5utr9Pi8EeehOpXq9kjeme5/5JPS0EzDdcsaQ4r6laZ1pW+M2DgSfw4HiUxYQbQ==",
+                SecurityStamp = "KSOKRWVRJPN7H4B7AKRRAHX4JME3GZNL",
+                ConcurrencyStamp = "241e7992-c1bd-4a3a-911a-c700caadb262",
+                LockoutEnabled = true,
             }
             );
         builder.Entity<Broker>().HasData(
@@ -53,7 +61,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerId = "b58"
+                 //BrokerId = "b58"
              }
             );
         builder.Entity<House>().HasData(
@@ -66,7 +74,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 1999,
                 NoOfFloors = 1,
                 NoOfRooms = 4,
-                BrokerId = "b58"
+                //BrokerId = "b58"
             }
         );
         builder.Entity<House>().HasData(
@@ -79,7 +87,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 1909,
                 NoOfFloors = 1,
                 NoOfRooms = 2,
-                BrokerId = "a23"
+                //BrokerId = "a23"
             }
         );
         builder.Entity<House>().HasData(
@@ -92,7 +100,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 BuildYear = 2011,
                 NoOfFloors = 3,
                 NoOfRooms = 8,
-                BrokerId = "a23"
+                //BrokerId = "a23"
             }
         );
     }

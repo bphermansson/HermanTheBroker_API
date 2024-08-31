@@ -19,7 +19,7 @@
         public Category? Category { get; set; }
         public string? Status { get; set; }
         public bool Error { get; set; }
-        public string BrokerId { get; set; }
+        public string? BrokerId { get; set; } = null!;
         public Broker? Broker { get; set; } = null!;    // Value in this field isn't required.
     }
 }

@@ -3,6 +3,10 @@ using HermanTheBrokerAPI.Classes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HermanTheBrokerAPI.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace HermanTheBrokerAPI.Data
 {
@@ -20,6 +24,7 @@ namespace HermanTheBrokerAPI.Data
             .ToList();
             return houses;
         }
+
         public IEnumerable<House> Search(Searchobject searchobject)
         {
             if (searchobject.Minsize > 0)

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HermanTheBroker_APIOld", "HermanTheBroker_API\HermanTheBroker_APIOld.csproj", "{CD69E609-56F6-4EBE-BF73-44085611FEB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermanTheBrokerAPI", "HermanTheBrokerAPI\HermanTheBrokerAPI.csproj", "{7A28D652-236E-4517-81FE-A9B1A9B6BA86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HermanTheBrokerAPI", "HermanTheBrokerAPI\HermanTheBrokerAPI.csproj", "{7A28D652-236E-4517-81FE-A9B1A9B6BA86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
