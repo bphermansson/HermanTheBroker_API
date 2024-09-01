@@ -22,8 +22,8 @@ namespace HermanTheBrokerAPI.Controllers
         private IBrokerRepository brokerRepository;
 
         // Function to create the first user. 
-        [HttpGet("GetPasswordHash")]
-        public async Task<IActionResult> GetPasswordHash()
+        [HttpGet("CreateFirstUser")]
+        public async Task<IActionResult> CreateFirstUser()
         {
             Broker appUser = new Broker
             {
