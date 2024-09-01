@@ -10,34 +10,32 @@ namespace HermanTheBrokerAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BrokerController : ControllerBase
+    public class BrokerController : Controller
     {
-        private readonly Broker _context;
-        private IBrokerRepository brokerRepository;
-        public BrokerController(IBrokerRepository brokerRepository, UserManager<Broker> userManager)
+        private UserManager<Broker> userManager;
+        public BrokerController(UserManager<Broker> usrMgr)
         {
-            this.brokerRepository = brokerRepository;
-            _userManager = userManager;
+            userManager = usrMgr;
         }
-        private readonly UserManager<Broker> _userManager;
+
+        //private readonly Broker _context;
+        private IBrokerRepository brokerRepository;
 
         // Function to create the first user. 
         [HttpGet("GetPasswordHash")]
-        public IActionResult GetPasswordHash()
+        public async Task<IActionResult> GetPasswordHash()
         {
-            //var user = _userManager.FindByNameAsync(User.Identity.Name);
-            var b = new Broker()
+            Broker appUser = new Broker
             {
-                Name = "Göran",
                 UserName = "admin@hermanthebroker.se",
-                Email = "admin@hermanthebroker.se",
-                NormalizedUserName = "admin@hermanthebroker.se"
+                Email = "admin@hermanthebroker.se"
             };
-            var PasswordHash = _userManager.PasswordHasher.HashPassword(b, "asdf1234_K");
 
-            return Content(PasswordHash);
+            IdentityResult result = await userManager.CreateAsync(appUser, "asdf1234_K");
+
+            return Content("Ok");
         }
-
+    
         [HttpGet("GetAllBrokers")]
         [Authorize]
         public IActionResult GetAllBrokers()

@@ -189,21 +189,17 @@ namespace HermanTheBrokerAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[,]
-                {
-                    { "6dbbc953-5718-404f-b6c4-00b2341a7051", 0, "241e7992-c1bd-4a3a-911a-c700caadb262", "admin@hermanthebroker.se", false, true, null, "Göran", "ADMIN@HERMANTHEBROKER.COM", "ADMIN@HERMANTHEBROKER.COM", "AQAAAAIAAYagAAAAEFx5utr9Pi8EeehOpXq9kjeme5/5JPS0EzDdcsaQ4r6laZ1pW+M2DgSfw4HiUxYQbQ==", 0L, false, "KSOKRWVRJPN7H4B7AKRRAHX4JME3GZNL", false, "admin@hermanthebroker.se" },
-                    { "b58", 0, "9f88ad77-232d-4959-a5a5-931b01ddb794", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "f052751b-b03b-440a-9ab7-152bed92d07f", false, null }
-                });
+                values: new object[] { "b58", 0, "3fad99d5-c42a-4f86-b84d-9373a173517c", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "985a0dd7-a1f5-46d7-b4bb-0888b787de32", false, null });
 
             migrationBuilder.InsertData(
                 table: "House",
                 columns: new[] { "HouseId", "Area", "BrokerId", "BuildYear", "Category", "City", "Error", "NoOfFloors", "NoOfRooms", "Status", "Street" },
                 values: new object[,]
                 {
+                    { 1, 200, null, 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" },
                     { 2, 123, null, 1999, null, "Trollhättan", false, 1, 4, null, "Drottninggatan" },
                     { 3, 80, null, 1909, null, "Uddevalla", false, 1, 2, null, "Kungsgatan" },
-                    { 4, 275, null, 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" },
-                    { 1, 200, "6dbbc953-5718-404f-b6c4-00b2341a7051", 1984, 2, "Vänersborg", false, 2, 7, null, "Storgatan" }
+                    { 4, 275, null, 2011, null, "Grästorp", false, 3, 8, null, "Odinsgatan" }
                 });
 
             migrationBuilder.CreateIndex(

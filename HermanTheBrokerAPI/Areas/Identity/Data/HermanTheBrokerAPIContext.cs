@@ -28,22 +28,6 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
         builder.Entity<Broker>().HasData(
             new Broker
             {
-                // Password asdf1234_K
-                Id = "6dbbc953-5718-404f-b6c4-00b2341a7051",
-                Name = "Göran",
-                UserName = "admin@hermanthebroker.se",
-                NormalizedUserName = "ADMIN@HERMANTHEBROKER.COM",
-                Email = "admin@hermanthebroker.se",
-                NormalizedEmail = "ADMIN@HERMANTHEBROKER.COM",
-                PasswordHash = "AQAAAAIAAYagAAAAEFx5utr9Pi8EeehOpXq9kjeme5/5JPS0EzDdcsaQ4r6laZ1pW+M2DgSfw4HiUxYQbQ==",
-                SecurityStamp = "KSOKRWVRJPN7H4B7AKRRAHX4JME3GZNL",
-                ConcurrencyStamp = "241e7992-c1bd-4a3a-911a-c700caadb262",
-                LockoutEnabled = true,
-            }
-            );
-        builder.Entity<Broker>().HasData(
-            new Broker
-            {
                 Email = "a@a.com",
                 Id = "b58",
                 Name = "James"
@@ -61,7 +45,7 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                  NoOfFloors = 2,
                  NoOfRooms = 7,
                  Category = Category.Villa,
-                 BrokerId = "6dbbc953-5718-404f-b6c4-00b2341a7051"
+                 //BrokerId = "6dbbc953-5718-404f-b6c4-00b2341a7051"
              }
             );
         builder.Entity<House>().HasData(

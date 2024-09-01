@@ -93,34 +93,16 @@ namespace HermanTheBrokerAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6dbbc953-5718-404f-b6c4-00b2341a7051",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "241e7992-c1bd-4a3a-911a-c700caadb262",
-                            Email = "admin@hermanthebroker.se",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            Name = "Göran",
-                            NormalizedEmail = "ADMIN@HERMANTHEBROKER.COM",
-                            NormalizedUserName = "ADMIN@HERMANTHEBROKER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFx5utr9Pi8EeehOpXq9kjeme5/5JPS0EzDdcsaQ4r6laZ1pW+M2DgSfw4HiUxYQbQ==",
-                            PhoneNumber = 0L,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "KSOKRWVRJPN7H4B7AKRRAHX4JME3GZNL",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@hermanthebroker.se"
-                        },
-                        new
-                        {
                             Id = "b58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9f88ad77-232d-4959-a5a5-931b01ddb794",
+                            ConcurrencyStamp = "3fad99d5-c42a-4f86-b84d-9373a173517c",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f052751b-b03b-440a-9ab7-152bed92d07f",
+                            SecurityStamp = "985a0dd7-a1f5-46d7-b4bb-0888b787de32",
                             TwoFactorEnabled = false
                         });
                 });
@@ -176,7 +158,6 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             HouseId = 1,
                             Area = 200,
-                            BrokerId = "6dbbc953-5718-404f-b6c4-00b2341a7051",
                             BuildYear = 1984,
                             Category = 2,
                             City = "Vänersborg",
