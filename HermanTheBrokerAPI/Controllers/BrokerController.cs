@@ -9,18 +9,31 @@ using System.Collections.Generic;
 namespace HermanTheBrokerAPI.Controllers
 {
 
+    //[Route("api/[controller]")]
+    //[ApiController]
+    //public class BrokerController : Controller
+    //{
+    //    private UserManager<Broker> userManager;
+    //    public BrokerController(UserManager<Broker> usrMgr)
+    //    {
+    //        userManager = usrMgr;
+    //    }
+
+    //    //private readonly Broker _context;
+    //    private IBrokerRepository brokerRepository;
+
     [Route("api/[controller]")]
     [ApiController]
-    public class BrokerController : Controller
+    public class BrokerController : ControllerBase
     {
-        private UserManager<Broker> userManager;
-        public BrokerController(UserManager<Broker> usrMgr)
-        {
-            userManager = usrMgr;
-        }
-
-        //private readonly Broker _context;
+        private readonly Broker _context;
         private IBrokerRepository brokerRepository;
+        public BrokerController(IBrokerRepository brokerRepository, UserManager<Broker> userManager)
+        {
+            this.brokerRepository = brokerRepository;
+            _userManager = userManager;
+        }
+        private readonly UserManager<Broker> _userManager;
 
         // Function to create the first user. 
         [HttpGet("CreateFirstUser")]
@@ -32,19 +45,19 @@ namespace HermanTheBrokerAPI.Controllers
                 Email = "admin@hermanthebroker.se"
             };
 
-            IdentityResult result = await userManager.CreateAsync(appUser, "asdf1234_K");
+            IdentityResult result = await _userManager.CreateAsync(appUser, "asdf1234_K");
 
             return Content("Ok");
         }
     
         [HttpGet("GetAllBrokers")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetAllBrokers()
         {
             try
             {
                 IEnumerable<Broker> brokers = new List<Broker>();
-               // brokers = brokerRepository.GetAllBrokers();
+                brokers = brokerRepository.GetAllBrokers();
                 string jsonData = JsonConvert.SerializeObject(brokers, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
