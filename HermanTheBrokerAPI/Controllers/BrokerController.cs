@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace HermanTheBrokerAPI.Controllers
 {
@@ -42,7 +43,8 @@ namespace HermanTheBrokerAPI.Controllers
         {
             try
             {
-                IEnumerable<Broker> brokers = brokerRepository.GetAllBrokers();
+                IEnumerable<Broker> brokers = new List<Broker>();
+               // brokers = brokerRepository.GetAllBrokers();
                 string jsonData = JsonConvert.SerializeObject(brokers, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -56,12 +58,21 @@ namespace HermanTheBrokerAPI.Controllers
         }
         
         [HttpGet("GetBrokerByEmail")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetBrokerByEmail(string brokerEmail)
         {
             try
             {
-                IEnumerable<Broker> brokers = brokerRepository.GetBrokerByEmail(brokerEmail);
+                IEnumerable<Broker>? brokers = new List<Broker>();
+                try
+                {
+                    brokers = brokerRepository.GetBrokerByEmail(brokerEmail);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                }
                 string jsonData = JsonConvert.SerializeObject(brokers, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore

@@ -14,7 +14,8 @@ namespace HermanTheBrokerAPI.Data
         }
         public IEnumerable<Broker> GetAllBrokers()
         {
-            IEnumerable<Broker> brokers = context.Broker.ToList();
+            IEnumerable<Broker> brokers = new List<Broker>();
+            brokers = context.Broker.ToList();
 
             return brokers;
         }

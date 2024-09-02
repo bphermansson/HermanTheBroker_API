@@ -32,59 +32,86 @@ public class HermanTheBrokerAPIContext : IdentityDbContext<Broker>
                 Id = "b58",
                 Name = "James"
             }
-            );
+        );
 
         builder.Entity<House>().HasData(
              new House
              {
                  HouseId = 1,
-                 Street = "Storgatan",
-                 City = "Vänersborg",
-                 Area = 200,
-                 BuildYear = 1984,
-                 NoOfFloors = 2,
-                 NoOfRooms = 7,
                  Category = Category.Villa,
-                 //BrokerId = "6dbbc953-5718-404f-b6c4-00b2341a7051"
+                 PostalAddress = "Storgatan 3",
+                 City = "Vänersborg",
+                 AskingPrice = 2350000,
+                 LivingArea = 210,
+                 SecondaryArea = 20,
+                 GardenArea = 1200,
+                 Description = "Det första huset.",
+                 NoOfRooms = 6,
+                 MonthlyFee = 0,
+                 YearlyRunningCosts = 36000,
+                 BuildYear = 1973,
+                 Error = false,
+                 BrokerId = "b58"
              }
             );
         builder.Entity<House>().HasData(
             new House
             {
                 HouseId = 2,
-                Street = "Drottninggatan",
-                City = "Trollhättan",
-                Area = 123,
-                BuildYear = 1999,
-                NoOfFloors = 1,
-                NoOfRooms = 4,
-                //BrokerId = "b58"
+                Category = Category.Bostadsrättslägenhet,
+                PostalAddress = "Kungsgatan 10",
+                City = "Grästorp",
+                AskingPrice = 200000,
+                LivingArea = 56,
+                SecondaryArea = 0,
+                GardenArea = 0,
+                Description = "Den första lägenheten.",
+                NoOfRooms = 2,
+                MonthlyFee = 5500,
+                YearlyRunningCosts = 3000,
+                BuildYear = 2021,
+                Error = false,
+                BrokerId = "b58"
             }
         );
         builder.Entity<House>().HasData(
             new House
             {
                 HouseId = 3,
-                Street = "Kungsgatan",
-                City = "Uddevalla",
-                Area = 80,
-                BuildYear = 1909,
-                NoOfFloors = 1,
+                Category = Category.Fritidshus,
+                PostalAddress = "Stråvalla 12",
+                City = "Frillesås",
+                AskingPrice = 600000,
+                LivingArea = 35,
+                SecondaryArea = 8,
+                GardenArea = 1900,
+                Description = "Det första fritidshuset.",
                 NoOfRooms = 2,
-                //BrokerId = "a23"
+                MonthlyFee = 0,
+                YearlyRunningCosts = 9000,
+                BuildYear = 1982,
+                Error = false,
+                BrokerId = "b58"
             }
         );
         builder.Entity<House>().HasData(
             new House
             {
                 HouseId = 4,
-                Street = "Odinsgatan",
-                City = "Grästorp",
-                Area = 275,
-                BuildYear = 2011,
-                NoOfFloors = 3,
-                NoOfRooms = 8,
-                //BrokerId = "a23"
+                Category = Category.Bostadsrättsradhus,
+                PostalAddress = "Drottninggatan 90",
+                City = "Trollhättan",
+                AskingPrice = 1200000,
+                LivingArea = 140,
+                SecondaryArea = 20,
+                GardenArea = 20,
+                Description = "Det första bostadsrättsradhuset.",
+                NoOfRooms = 5,
+                MonthlyFee = 5500,
+                YearlyRunningCosts = 12000,
+                BuildYear = 1989,
+                Error = false,
+                BrokerId = "b58"
             }
         );
     }
