@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HermanTheBrokerAPI.Migrations
 {
     [DbContext(typeof(HermanTheBrokerAPIContext))]
-    [Migration("20240902134404_Init")]
+    [Migration("20240903092328_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -98,14 +98,14 @@ namespace HermanTheBrokerAPI.Migrations
                         {
                             Id = "b58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da283387-4e1c-4453-9e4d-8379727e81dd",
+                            ConcurrencyStamp = "3f824a6e-efee-4712-acf5-e4b00514069e",
                             Email = "a@a.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "James",
                             PhoneNumber = 0L,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd12acfd-264b-4b9e-bc2b-f1b8e99fa931",
+                            SecurityStamp = "faf5f984-5b4c-4a97-a74e-61977dc71e82",
                             TwoFactorEnabled = false
                         });
                 });

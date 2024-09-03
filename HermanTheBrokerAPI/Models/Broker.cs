@@ -6,6 +6,6 @@ namespace HermanTheBrokerAPI.Models
 	{
 		public string Name { get; set; } = string.Empty;
 		public long PhoneNumber { get; set; }
-		public ICollection<House> Houses { get; set; }
-	}
+		public ICollection<House>? Houses { get; set; } = null!;
+    }
 }

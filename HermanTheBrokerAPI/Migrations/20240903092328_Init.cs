@@ -193,7 +193,7 @@ namespace HermanTheBrokerAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b58", 0, "da283387-4e1c-4453-9e4d-8379727e81dd", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "bd12acfd-264b-4b9e-bc2b-f1b8e99fa931", false, null });
+                values: new object[] { "b58", 0, "3f824a6e-efee-4712-acf5-e4b00514069e", "a@a.com", false, false, null, "James", null, null, null, 0L, false, "faf5f984-5b4c-4a97-a74e-61977dc71e82", false, null });
 
             migrationBuilder.InsertData(
                 table: "House",
